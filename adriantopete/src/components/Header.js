@@ -85,7 +85,7 @@ i {
     font-size: 3rem; 
 }
 
-/* span:before {
+span:before {
     content: 'Respect'; 
     animation: animate infinite 15s; 
 }
@@ -103,7 +103,7 @@ i {
     60%{
         content: 'Style'; 
     }
-} */
+}
 
 
 
@@ -150,7 +150,7 @@ const Header = () => {
                 </nav>
             </div>
             <div className="title-info">
-                <h3>Train With <span>Style</span></h3>
+                <h3>Train With <span></span></h3>
                 <h2>Your Goalkeeping Journey<br></br>Starts Here</h2>
             </div>
         </StyledHeader>
