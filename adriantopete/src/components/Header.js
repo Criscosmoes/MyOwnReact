@@ -145,8 +145,8 @@ const Header = () => {
                 <h1>ATGT Goalkeeping</h1>
 
                 <nav className="socials">
-                    <a href='mailto:adriantopete01@icloud.com'><i className="far fa-envelope"></i></a>
-                    <a href='https://www.instagram.com/atgt_/'><i className="fab fa-instagram"></i></a>
+                    <a href='mailto:adriantopete01@icloud.com'><i className="far fa-envelope"></i>Email</a>
+                    <a href='https://www.instagram.com/atgt_/'><i className="fab fa-instagram"></i>Instagram</a>
                 </nav>
             </div>
             <div className="title-info">
