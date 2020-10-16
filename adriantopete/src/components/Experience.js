@@ -121,7 +121,7 @@ const Experience = () => {
                     <img src={teamsArr[id]}/>
             </div>
             <div className="buttons">
-                        <i class="fas fa-angle-right" onClick={forwardButton}></i>
+                        <i className="fas fa-angle-right" onClick={forwardButton}></i>
                     </div>
             </div>
             <hr></hr>
