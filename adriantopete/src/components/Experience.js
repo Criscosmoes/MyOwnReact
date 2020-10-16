@@ -7,33 +7,30 @@ const StyledExperience = styled.div`
 & { 
 
     @import url(${'https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap'});
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
     background: #C3BFBB; 
-    height: 45vh; 
 }
 
 .image-container {
     display: flex;
     justify-content: space-around;
-    align-items: center;   
+    align-items: center; 
+    height: 45vh; 
     
 }
 
 .about {
-    /* margin-top: 2%;  */
+    margin-top: 2%; 
     text-align: center; 
     font-size: 4rem; 
 }
 
 
 img {
-    max-width: 50%; 
+    max-width: 80%; 
     border:4px solid black;
     -moz-box-shadow: 10px 10px 50px black; 
     -webkit-box-shadow: 10px 10px 50px black;;
-    box-shadow: 10px 10px 50px black; 
+    box-shadow: 10px 10px 50px black;  
 }
 
 p {
@@ -62,24 +59,32 @@ h2 {
 
 .team-container {
     display: flex; 
-    justify-content: space-around; 
+    justify-content: space-evenly; 
     width: 45%;
-    margin: 2%; 
+    margin: 4%; 
 
 }
 
 .buttons {
     display: flex; 
     align-items: center; 
+    margin-right: 3%; 
 }
 
 i {
     font-size: 8rem;
+    
 }
 
 i:hover {
     cursor: pointer;
     opacity: .7; 
+}
+
+hr {
+    width: 95%; 
+    margin-top: 2.5%; 
+
 }
 
 `
@@ -90,7 +95,7 @@ const Experience = () => {
 
     const [id, setId] = useState(0); 
 
-    const teamsArr = ['https://upload.wikimedia.org/wikipedia/en/9/9f/EastBayPioneers.png','https://lh3.googleusercontent.com/proxy/jVphehE6hY2YXtjC32DJ2c8zb1m82uJ40WsiVwFucLW8Sf3eu2zSmbjywYsodq2yePgV0stbgCk_ii5OYXgpPW6dSw','https://i.pinimg.com/originals/ad/2d/48/ad2d480be51520932dd5059511a07985.jpg', 'https://upload.wikimedia.org/wikipedia/en/2/21/Ontario_Fury_MASL_logo_%282014%29.png', 'https://upsl.sportzstudio.com/team_images/1524572413_a.png', 'https://upload.wikimedia.org/wikipedia/en/0/00/National_Premier_Soccer_League.png' ]
+    const teamsArr = ['https://upload.wikimedia.org/wikipedia/en/9/9f/EastBayPioneers.png','https://lh3.googleusercontent.com/proxy/06gtvFEmVv6Iu7uBTANMjgI7oxu602Qr7fl2LsH61ukI0bKCqH4-rC9VYNSQrrbH-hEORLUmPAcjKgMixfYiV9KE6hwACQM','https://i.pinimg.com/originals/ad/2d/48/ad2d480be51520932dd5059511a07985.jpg', 'https://49th0q3ez9gr6di2u1gy1ta1-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/OF_White.png', 'https://upsl.sportzstudio.com/team_images/1524572413_a.png', 'https://upload.wikimedia.org/wikipedia/en/0/00/National_Premier_Soccer_League.png' ]
 
 
     const forwardButton = () => {
@@ -107,18 +112,19 @@ const Experience = () => {
     return (
         <StyledExperience>
 
-            <div className="image-container">
+            <div className="image-container" id="experience">
             <div className="info">
                     <h2>Experience</h2>
                     <p>Ex proident aute aliquip eiusmod aute id ipsum amet id. Nulla qui in tempor officia nisi eu minim officia ea fugiat. Duis amet irure sunt laboris. Et nulla commodo ullamco anim eu commodo nisi cupidatat enim. Sunt veniam proident voluptate minim enim est consequat aute sit dolor. Et amet enim officia sint deserunt. Do qui non amet adipisicing ipsum labore dolor culpa quis culpa.</p>
                 </div>
             <div className="team-container">
                     <img src={teamsArr[id]}/>
-                    <div className="buttons">
+            </div>
+            <div className="buttons">
                         <i class="fas fa-angle-right" onClick={forwardButton}></i>
                     </div>
             </div>
-            </div>
+            <hr></hr>
 
         </StyledExperience>
     )

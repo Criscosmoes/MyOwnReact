@@ -1,6 +1,6 @@
 import React, {useState} from 'react'; 
 import styled from 'styled-components'; 
-
+import { Link } from 'react-scroll'; 
 
 const StyledHeader = styled.div`
 
@@ -55,7 +55,8 @@ h1 {
 a { 
     color: white; 
     margin: 0% 4.5%; 
-    font-size: 1.6rem; 
+    font-size: 1.6rem;
+    width: 50%;  
     cursor: pointer; 
 }
 
@@ -82,12 +83,23 @@ span {
 }
 
 i {
-    font-size: 3rem; 
+    font-size: 5rem; 
 }
 
+.socials {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+}
+
+.socials a:hover {
+    border-bottom: 1px transparent; 
+}
+
+
 span:before {
-    content: 'Respect'; 
-    animation: animate infinite 15s; 
+    content: ''; 
+    animation: animate infinite 13s; 
 }
 
 @keyframes animate{
@@ -103,16 +115,27 @@ span:before {
     60%{
         content: 'Style'; 
     }
+    80% {
+        content: 'Commitment'; 
+    }
+    100% {
+        content: 'Bravery'
+    }
+}
+
+
+@media (max-width: 375px){
+
+    .socials {
+        font-size: 1rem; 
+        width: 10%; 
+    }
+    
 }
 
 
 
 `
-
-
-
-
-
 
 const Header = () => {
 
@@ -134,20 +157,29 @@ const Header = () => {
 
 
     return (
-        <StyledHeader >
+        <StyledHeader id="home" >
             <div className={`nav-box ${navBar ? 'active' : ''}`} >
                 <nav className="navigation">
-                    <a>Home</a>
-                    <a>About</a>
-                    <a>Contact</a>
+                    <Link activeClass="active" to="home" smooth={true} duration={500}>Home
+                    </Link>
+
+                    <Link activeClass="active" to="about" smooth={true} duration={500}>About
+                    </Link>
+
+                    <Link activeClass="active" to="experience" smooth={true} duration={500}>Experience
+                    </Link>
+
+                    <Link activeClass="active" to="location" smooth={true} duration={500}>Location
+                    </Link>
                 </nav>
 
                 <h1>ATGT Goalkeeping</h1>
 
-                <nav className="socials">
-                    <a href='mailto:adriantopete01@icloud.com'><i className="far fa-envelope"></i>Email</a>
-                    <a href='https://www.instagram.com/atgt_/'><i className="fab fa-instagram"></i>Instagram</a>
-                </nav>
+                <div className="socials">
+                    <a className="icons" href='mailto:adriantopete01@icloud.com'><i className="far fa-envelope"></i></a>
+                    
+                    <a href='https://www.instagram.com/atgt_/'><i className="fab fa-instagram"></i></a>
+                </div>
             </div>
             <div className="title-info">
                 <h3>Train With <span></span></h3>

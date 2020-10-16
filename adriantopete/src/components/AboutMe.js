@@ -69,9 +69,9 @@ const AboutMe = () => {
 
 
     return (
-        <StyledAboutMe>
+        <StyledAboutMe id="about">
 
-            <div className="image-container">
+            <div className="image-container" id="about">
                 <img src='https://eastbaypioneers.com/images/2015/8/27/adrian.jpg?width=300'/>
                 <div className="info">
                     <h2>About Me</h2>
