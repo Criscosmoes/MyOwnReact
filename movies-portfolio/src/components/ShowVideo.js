@@ -138,7 +138,7 @@ const ShowVideo = ({ videos, currentVideo, onVideoSelect }) => {
     return (
       <div className="video-container" key={cur.id.videoId}>
         <h1>{cur.snippet.title ? mainTitle(cur.snippet.title) : cur.snippet.title}</h1>
-        <iframe title={cur.snippet.title} src={`https://www.youtube.com/embed/${cur.id.videoId}`} />
+        <iframe allowFullScreen title={cur.snippet.title} src={`https://www.youtube.com/embed/${cur.id.videoId}`} />
       </div>
     );
   });
