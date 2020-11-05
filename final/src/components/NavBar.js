@@ -110,6 +110,7 @@ const StyledNavBar = styled.div`
     width: 90%; 
     margin: 1%; 
     border: none; 
+    outline: none; 
   }
 
 `;
