@@ -93,13 +93,12 @@ const StyledNavBar = styled.div`
     align-items: center; 
     width: 100%; 
     position: fixed; 
-    left: 0; 
-    top: -100%; 
+    top: -10%; 
     transition: 900ms; 
   }
 
   .open {
-    top: 30%; 
+    top: 8%; 
     transition: 900ms; 
   }
 
@@ -114,10 +113,14 @@ const StyledNavBar = styled.div`
 const NavBar = ({isOpen, switchOpen, searchOpen, switchSearch}) => {
   return (
     <StyledNavBar>
+      <div className={`click-search ${searchOpen ? 'open' : ''}`}>
+        <BiSearchAlt /> 
+        <input  type="text" placeholder="Search..." /> 
+      </div>
       <div className="navigation">
 
         <nav>
-          <FaBars onClick={switchOpen} className="bars" />
+          <FaBars onClick={switchOpen}  className="bars" />
         </nav>
 
         <Link className="title" to="/">
@@ -145,10 +148,6 @@ const NavBar = ({isOpen, switchOpen, searchOpen, switchSearch}) => {
                   Upcoming
                 </Link>
             </div>
-      </div>
-      <div className={`click-search ${searchOpen ? 'open' : ''}`}>
-        <BiSearchAlt /> 
-        <input  type="text" placeholder="Search..." /> 
       </div>
     </StyledNavBar>
   );
