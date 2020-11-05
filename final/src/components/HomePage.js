@@ -5,34 +5,43 @@ const StyledHomePage = styled.div`
   /* header */
 
   .header {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
     background-image: url(${"https://images.unsplash.com/photo-1540266908617-307d8bdaacbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"});
     background-size: cover; 
     color: white;
+    height: 30vh;
   }
 
   .info > * {
    /*  margin: 1%;  */
-    margin-left: 4%; 
+    margin-left: 4%;
   }
 
   h1 {
     font-size: 5rem;
+    margin: 4%; 
   }
 
   p {
     font-size: 2rem;
     line-height: 1.3;
+    width: 100%; 
+    margin: 3%; 
   }
 
   input {
     margin: 1.5%; 
-    width: 50%; 
+    width: 70%; 
   }
 
   .input {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%; 
   }
 `;
 
