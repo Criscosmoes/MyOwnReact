@@ -60,7 +60,7 @@ const StyledNavBar = styled.div`
     background: lightgray; 
     width: 52%; 
     position: fixed;
-    top: 4.9rem;
+    top: 5.2rem;
     left: -100%; 
     transition: 900ms; 
     height: 100%; 
