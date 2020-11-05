@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { BiSearchAlt } from 'react-icons/bi'; 
+import { AiOutlineClose } from 'react-icons/ai'; 
 
 
 import { connect } from "react-redux";
@@ -60,7 +61,7 @@ const StyledNavBar = styled.div`
     background: lightgray; 
     width: 52%; 
     position: fixed;
-    top: 5.3rem;
+    top: 0; 
     left: -100%; 
     transition: 900ms; 
     height: 100%; 
@@ -105,10 +106,11 @@ const NavBar = ({isOpen, switchOpen}) => {
 
 
       </div>
-
-
       <div className={`menu ${isOpen ? 'active' : ''}`}>
             <div className="links">
+
+                <AiOutlineClose onClick={switchOpen} />
+              
                 <Link className="link" onClick={switchOpen} to="/popular">
                   Popular
                 </Link>
