@@ -4,9 +4,11 @@ import HeaderText from './HeaderText';
 
 import NavBar from './NavBar';
 import SearchBar from './SearchBar';
+import HomePage from './HomePage';
 
 
 import { Switch, Route } from 'react-router-dom'; 
+
 
 const App = () => {
 
@@ -16,7 +18,7 @@ const App = () => {
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    <h1>Home</h1>
+                    {/* <HomePage />  */}
                 </Route>
 
                 <Route path="/popular" exact>

@@ -31,3 +31,12 @@ export const switchOpen = () => {
     }
 
 }
+
+
+
+export const switchSearch = () => {
+
+    return {
+        type: "SEARCH_OPEN", 
+    }
+}

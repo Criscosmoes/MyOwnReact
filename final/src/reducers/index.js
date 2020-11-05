@@ -2,6 +2,7 @@ const initialState = {
     movies: [], 
     searchTerm: '', 
     isOpen: false, 
+    searchOpen: false, 
 }
 
 
@@ -28,6 +29,13 @@ export default (state = initialState, action) => {
                 ...state, 
                 isOpen: !state.isOpen, 
             }
+        case "SEARCH_OPEN": 
+
+            return {
+                ...state, 
+                searchOpen: !state.searchOpen, 
+            }
+        
         default: 
             return state; 
     }

@@ -6,7 +6,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 
 import { connect } from "react-redux";
-import { switchOpen } from '../actions'; 
+import { switchOpen, switchSearch } from '../actions'; 
 
 
 import { Link } from 'react-router-dom'; 
@@ -87,9 +87,31 @@ const StyledNavBar = styled.div`
   }
 
 
+  .click-search {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    width: 100%; 
+    position: fixed; 
+    left: 0; 
+    top: -100%; 
+    transition: 900ms; 
+  }
+
+  .open {
+    top: 30%; 
+    transition: 900ms; 
+  }
+
+
+  input {
+    width: 90%; 
+    margin: 1%; 
+  }
+
 `;
 
-const NavBar = ({isOpen, switchOpen}) => {
+const NavBar = ({isOpen, switchOpen, searchOpen, switchSearch}) => {
   return (
     <StyledNavBar>
       <div className="navigation">
@@ -102,7 +124,7 @@ const NavBar = ({isOpen, switchOpen}) => {
           Movies Info
         </Link>
 
-        <BiSearchAlt className="search"/> 
+        {searchOpen ? <AiOutlineClose className="search" onClick={switchSearch} /> : <BiSearchAlt onClick={switchSearch} className="search"/> }
 
 
       </div>
@@ -124,6 +146,10 @@ const NavBar = ({isOpen, switchOpen}) => {
                 </Link>
             </div>
       </div>
+      <div className={`click-search ${searchOpen ? 'open' : ''}`}>
+        <BiSearchAlt /> 
+        <input  type="text" placeholder="Search..." /> 
+      </div>
     </StyledNavBar>
   );
 };
@@ -133,8 +159,9 @@ const mapStateToProps = state => {
 
 
     return {
-        isOpen: state.isOpen, 
+        isOpen: state.isOpen,
+        searchOpen: state.searchOpen 
     }
 }
 
-export default connect(mapStateToProps, { switchOpen })(NavBar);
+export default connect(mapStateToProps, {switchOpen, switchSearch})(NavBar);
