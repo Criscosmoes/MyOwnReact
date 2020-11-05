@@ -11,15 +11,16 @@ const StyledHomePage = styled.div`
   }
 
   .info > * {
-    margin: 1%; 
+   /*  margin: 1%;  */
     margin-left: 4%; 
   }
 
   h1 {
-    font-size: 3.5rem;
+    font-size: 5rem;
   }
 
   p {
+    font-size: 2rem;
     line-height: 1.3;
   }
 
