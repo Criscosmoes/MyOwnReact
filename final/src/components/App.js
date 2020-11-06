@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, {useEffect} from 'react'; 
 import '../App.css'; 
 import HeaderText from './HeaderText';
 
@@ -10,16 +10,27 @@ import HomePage from './HomePage';
 import { Switch, Route } from 'react-router-dom'; 
 
 
+import { fetchMovies } from './../actions/index';
+import { connect } from 'react-redux';
 
-const App = () => {
 
 
+const App = ({trending, topRated, fetchMovies}) => {
+
+
+    useEffect(() => {
+
+       fetchMovies('top rated', 'movie/top_rated'); 
+       fetchMovies('trending', 'trending/all/week'); 
+
+    }, [])
+    
     return (
         <div className="App">
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    <HomePage />
+                    <HomePage trending={trending} topRated={topRated} />
                 </Route>
 
                 <Route path="/popular" exact>
@@ -43,5 +54,13 @@ const App = () => {
 }
 
 
+const mapStateToProps = state => {
 
-export default App; 
+    return {
+        trending: state.trending, 
+        topRated: state.topRated, 
+    }
+}
+
+
+export default connect(mapStateToProps, { fetchMovies})(App); 

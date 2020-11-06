@@ -1,5 +1,6 @@
 const initialState = {
-    movies: [], 
+    topRated: [], 
+    trending: [], 
     searchTerm: '', 
     isOpen: false, 
     searchOpen: false, 
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
 
             return {
                 ...state, 
-                movies: [...action.payload]
+                [action.payload.name]: [...action.payload.arr], 
             }
         case "ADD_TERM": 
 

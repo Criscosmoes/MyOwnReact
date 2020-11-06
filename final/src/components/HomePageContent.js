@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+
 import styled from "styled-components";
 
-import { fetchMovies } from "./../actions/index";
 
 const StyledHomePageContent = styled.div`
   & {
@@ -52,10 +51,9 @@ const StyledHomePageContent = styled.div`
   }
 `;
 
-const HomePageContent = ({ movies, fetchMovies }) => {
-  useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+const HomePageContent = ({ movies, title  }) => {
+
+  
 
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
@@ -73,16 +71,11 @@ const HomePageContent = ({ movies, fetchMovies }) => {
 
   return (
     <StyledHomePageContent>
-      <h2>Trending This Week</h2>
+      <h2>{title}</h2>
       <div className="container">{moviesList}</div>
     </StyledHomePageContent>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies,
-  };
-};
 
-export default connect(mapStateToProps, { fetchMovies })(HomePageContent);
+export default HomePageContent;
