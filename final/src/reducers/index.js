@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
 
             return {
                 ...state, 
-                movies: [action.payload]
+                movies: [...action.payload]
             }
         case "ADD_TERM": 
 

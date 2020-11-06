@@ -14,11 +14,7 @@ export const fetchMovies = () => async dispatch => {
     }); 
 
 
-    return {
-        type: "FETCH_MOVIES", 
-        payload: response.data.results, 
-    }
-
+    dispatch({type: "FETCH_MOVIES", payload: response.data.results})
      
 }
 
