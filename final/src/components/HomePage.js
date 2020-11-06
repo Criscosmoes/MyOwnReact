@@ -7,6 +7,7 @@ const HomePage = () => {
         <div>
             <HomePageHeader />
             <HomePageContent /> 
+            <HomePageContent /> 
         </div>
     )
 }

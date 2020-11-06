@@ -99,10 +99,9 @@ const StyledNavBar = styled.div`
   }
 
   .open {
-    top: 6%; 
-    transition: 900ms; 
     display: none; 
     font-size: 1.5rem;
+    transition: 900ms; 
   }
 
 

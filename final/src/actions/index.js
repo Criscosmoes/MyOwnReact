@@ -6,7 +6,7 @@ export const fetchMovies = () => async dispatch => {
 
     const KEY = '2d241abde6516d29ca9254c83e3cfc34'
 
-    const response = await moviesDB.get('/movie/popular', {
+    const response = await moviesDB.get('/week', {
         params: {
             api_key: KEY,  
         }
