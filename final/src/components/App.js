@@ -24,7 +24,7 @@ const App = ({trending, topRated, fetchMovies}) => {
        fetchMovies('trending', 'trending/all/week'); 
 
     }, [])
-    
+
     return (
         <div className="App">
             <Switch>
@@ -46,6 +46,11 @@ const App = ({trending, topRated, fetchMovies}) => {
                 <Route path="/upcoming" exact>
                     <NavBar /> 
                     <h1>Upcoming</h1>
+                </Route>
+
+                <Route path="/movie/:id">
+                    <NavBar /> 
+                    <h1>movie id</h1>
                 </Route>
 
             </Switch>

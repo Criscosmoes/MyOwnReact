@@ -4,6 +4,7 @@ const initialState = {
     searchTerm: '', 
     isOpen: false, 
     searchOpen: false, 
+    isFlipped: false, 
 }
 
 
@@ -36,7 +37,11 @@ export default (state = initialState, action) => {
                 ...state, 
                 searchOpen: !state.searchOpen, 
             }
-        
+        case "FLIP_CARD": 
+
+            return {
+                ...state, 
+            }
         default: 
             return state; 
     }

@@ -1,69 +1,101 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+import { flipCard } from '../actions'; 
+import { connect } from 'react-redux'; 
 
 const StyledHomePageContent = styled.div`
-  & {
-  }
 
-  h2 {
-    text-align: center;
-    margin: 3%;
-  }
+.scene {
+  min-width: 45%; 
+  height: 320px;
+  margin: 1%; 
+}
 
-  .container {
-    display: flex;
-    overflow-x: auto;
-  }
 
-  .movie {
-    display: flex;
-    flex-direction: column;
-    min-width: 45%;
-    margin: 1.5%;
-    text-align: center;
-    border: 4px solid white;
-    -moz-box-shadow: 5px 5px 40px black;
-    -webkit-box-shadow: 5px 5px 40px black;
-    box-shadow: 10px 10px 30px black;
-  }
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
 
-  img {
-    width: 100%;
-    height: 250px;
-    min-height: 250px;
-  }
+.card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
 
-  .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; 
-    background: #1f2833;
-    color: white;
-    width: 100%;
-    height: 100%;
-  }
 
-  h3 {
-    margin: 2.7%; 
-  }
-`;
+.card__face--front {
+  border: 4px solid white;
+  -moz-box-shadow: 5px 5px 40px black;
+  -webkit-box-shadow: 5px 5px 40px black;
+  box-shadow: 10px 10px 30px black;
+}
 
-const HomePageContent = ({ movies, title  }) => {
+.card__face--back {
+  transform: rotateY( 180deg );
+}
 
-  
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
 
+.container {
+  display: flex;
+  overflow-x: auto; 
+}
+
+.card__face--front img {
+
+}
+
+.info {
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column; 
+  background: grey; 
+  height: 7vh; 
+}
+
+.title {
+  text-align: center; 
+  height: 100%; 
+}
+
+img {
+  width: 300px; 
+  height: 250px; 
+}
+
+h2 {
+  font-size: 1.4rem; 
+}
+
+`
+
+const HomePageContent = ({ movies, title, flipCard }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
   const moviesList = filteredList.map((cur) => {
     return (
-      <div className="movie" key={cur.id}>
-        <img src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`} />
-        <div className="title">
-          <h3>{cur.title}</h3>
-          <h3>Rating: {`${cur.vote_average} ${cur.vote_average > 7.5 ? '🔥' : ''}`}</h3>
+
+      <div key={cur.id} className="scene">
+        <div onClick={flipCard} className="card">
+            <div className="card__face card__face--front">
+              <img src={`https://image.tmdb.org/t/p/w300/${cur.poster_path}`} /> 
+              <div className="info">
+                <h2 className="title">{cur.title}</h2>
+                <h2>Rating: {cur.vote_average}</h2>
+              </div>
+            </div>
+            <div className="card__face card__face--back">back</div>
         </div>
       </div>
     );
@@ -72,10 +104,20 @@ const HomePageContent = ({ movies, title  }) => {
   return (
     <StyledHomePageContent>
       <h2>{title}</h2>
-      <div className="container">{moviesList}</div>
+
+      <div className="container">
+        {moviesList}
+      </div>
     </StyledHomePageContent>
   );
 };
 
+const mapStateToProps = state => {
 
-export default HomePageContent;
+  return {
+    isFlipped: state.isFlipped, 
+  }
+}
+
+export default connect(mapStateToProps, { flipCard })(HomePageContent);
+

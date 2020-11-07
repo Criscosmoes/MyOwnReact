@@ -65,14 +65,14 @@ const StyledNavBar = styled.div`
     position: fixed;
     top: 0; 
     left: -100%; 
-    transition: 900ms; 
+    transition: 500ms; 
     height: 100%; 
   }
 
 
   .active {
     left: 0; 
-    transition: 900ms; 
+    transition: 500ms; 
   }
 
   .links {
@@ -94,14 +94,14 @@ const StyledNavBar = styled.div`
     justify-content: space-around; 
     align-items: center; 
     width: 100%; 
-    transition: 900ms; 
+    transition: 500ms; 
     color: black; 
   }
 
   .open {
     display: none; 
     font-size: 1.5rem;
-    transition: 900ms; 
+    transition: 500ms; 
   }
 
 
