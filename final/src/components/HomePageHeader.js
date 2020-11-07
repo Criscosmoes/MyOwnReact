@@ -12,7 +12,7 @@ const StyledHomePageHeader = styled.div`
     background-image: url(${"https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"});
     background-size: cover; 
     color: white;
-    height: 30vh;
+    height: 40vh;
   }
 
   .info > * {
@@ -22,7 +22,7 @@ const StyledHomePageHeader = styled.div`
 
   h1 {
     font-size: 5.5rem;
-    margin-top: 13%; 
+    margin-top: 24%; 
   }
 
   p {
@@ -33,9 +33,11 @@ const StyledHomePageHeader = styled.div`
   }
 
   input { 
-    width: 70%; 
+    width: 80%; 
+    height: 100%; 
     border: none; 
     outline: none; 
+    font-size: 2rem;
   }
 
   .input {
@@ -43,6 +45,7 @@ const StyledHomePageHeader = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%; 
+    height: 10%; 
   }
 `;
 

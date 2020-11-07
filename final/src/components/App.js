@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react'; 
 import '../App.css'; 
-import HeaderText from './HeaderText';
 
 import NavBar from './NavBar';
-import SearchBar from './SearchBar';
 import HomePage from './HomePage';
 
 
@@ -23,7 +21,7 @@ const App = ({trending, topRated, fetchMovies}) => {
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
 
-    }, [])
+    }, [fetchMovies])
 
     return (
         <div className="App">
