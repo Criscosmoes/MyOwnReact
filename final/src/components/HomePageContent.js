@@ -39,6 +39,10 @@ const StyledHomePageContent = styled.div`
 }
 
 .card__face--back {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transform: rotateY( 180deg );
 }
 
@@ -49,6 +53,7 @@ const StyledHomePageContent = styled.div`
 .container {
   display: flex;
   overflow-x: auto; 
+  overflow-y: hidden; 
 }
 
 .card__face--front img {
@@ -74,8 +79,15 @@ img {
   height: 250px; 
 }
 
-h2 {
+h3 {
   font-size: 1.4rem; 
+
+}
+
+h2 {
+  text-align: center; 
+  font-size: 2.5rem; 
+  margin: 3%; 
 }
 
 `
@@ -91,11 +103,13 @@ const HomePageContent = ({ movies, title, flipCard }) => {
             <div className="card__face card__face--front">
               <img src={`https://image.tmdb.org/t/p/w300/${cur.poster_path}`} /> 
               <div className="info">
-                <h2 className="title">{cur.title}</h2>
-                <h2>Rating: {cur.vote_average}</h2>
+                <h3 className="title">{cur.title}</h3>
+                <h3>Rating: {cur.vote_average}</h3>
               </div>
             </div>
-            <div className="card__face card__face--back">back</div>
+            <div className="card__face card__face--back">
+              <p>{cur.overview}</p>
+            </div>
         </div>
       </div>
     );
