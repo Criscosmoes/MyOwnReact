@@ -101,7 +101,7 @@ const HomePageContent = ({ movies, title, flipCard }) => {
         <div onClick={flipCard} className="card">
           <div className="card__face card__face--front">
             <img
-              src={`https://image.tmdb.org/t/p/w200/${cur.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`}
               alt={cur.title}
             />
             <div className="info">
