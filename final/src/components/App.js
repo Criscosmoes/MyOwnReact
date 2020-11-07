@@ -8,27 +8,29 @@ import HomePage from './HomePage';
 import { Switch, Route } from 'react-router-dom'; 
 
 
-import { fetchMovies } from './../actions/index';
+import { fetchMovies, fetchTrailers } from './../actions/index';
 import { connect } from 'react-redux';
 
 
 
-const App = ({trending, topRated, fetchMovies}) => {
+const App = ({movies, fetchMovies, fetchTrailers}) => {
 
 
     useEffect(() => {
 
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
+       fetchTrailers('740985', 'movie'); 
 
-    }, [fetchMovies])
+
+    }, [fetchMovies, fetchTrailers])
 
     return (
         <div className="App">
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    <HomePage trending={trending} topRated={topRated} />
+                    <HomePage trending={movies.trending} topRated={movies.topRated} />
                 </Route>
 
                 <Route path="/popular" exact>
@@ -60,10 +62,9 @@ const App = ({trending, topRated, fetchMovies}) => {
 const mapStateToProps = state => {
 
     return {
-        trending: state.trending, 
-        topRated: state.topRated, 
+        movies: state.movies
     }
 }
 
 
-export default connect(mapStateToProps, { fetchMovies})(App); 
+export default connect(mapStateToProps, { fetchMovies, fetchTrailers })(App); 

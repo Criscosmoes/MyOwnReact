@@ -1,6 +1,14 @@
 const initialState = {
-    topRated: [], 
-    trending: [], 
+    movies: {
+        trending: [], 
+        topRated: [], 
+    },
+
+    information: {
+        images: [], 
+        trailers: [], 
+    },
+
     searchTerm: '', 
     isOpen: false, 
     searchOpen: false, 
@@ -17,7 +25,19 @@ export default (state = initialState, action) => {
 
             return {
                 ...state, 
-                [action.payload.name]: [...action.payload.arr], 
+                movies: {
+                    ...state.movies, 
+                    [action.payload.name]: [...action.payload.arr]
+                } 
+            }
+        case "FETCH_TRAILERS": 
+
+            return {
+                ...state, 
+                information: {
+                    ...state.information, 
+                    trailers: [...state.information.trailers, action.payload]
+                }
             }
         case "ADD_TERM": 
 
