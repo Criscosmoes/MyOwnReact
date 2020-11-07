@@ -72,6 +72,7 @@ const StyledNavBar = styled.div`
 
   .active {
     left: 0; 
+    z-index: 1; 
     transition: 500ms; 
   }
 
