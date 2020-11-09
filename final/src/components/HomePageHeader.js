@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { onInputChange, fetchMovies } from '../actions'; 
+import { FcSearch } from 'react-icons/fc'
+
+import { onInputChange, fetchMovies } from "../actions";
 
 const StyledHomePageHeader = styled.div`
   /* header */
@@ -15,30 +17,35 @@ const StyledHomePageHeader = styled.div`
     flex-direction: column;
     background-image: url(${"https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"});
     background-size: cover;
+    background-position: 20% 67%; 
     color: white;
     height: 40vh;
   }
 
+  .header > * {
+    margin: 2%; 
+  }
+
   .info > * {
-    /*  margin: 1%;  */
     margin-left: 4%;
+    margin: 1%; 
+  }
+
+  .info {
+    width: 95%; 
   }
 
   h1 {
     font-size: 5.5rem;
-    margin-top: 24%;
   }
 
   p {
     font-size: 2rem;
-    line-height: 1.3;
-    width: 100%;
-    margin: 5%;
+    line-height: 1.3; 
   }
 
   input {
-    width: 80%;
-    height: 100%;
+    width: 100%;
     border: none;
     outline: none;
     font-size: 2rem;
@@ -48,13 +55,36 @@ const StyledHomePageHeader = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 10%;
+  }
+
+  .form {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: 2px solid #66fcf1; 
+    width: 100%;  
+  }
+
+  button {
+    background: #1f2833; 
+    border: none; 
+    outline: none; 
+    width: 100%; 
+  }
+
+  .search-btn {
+    font-size: 2rem; 
+    background: transparent;
+    border: none; 
+    outline: none;  
+  }
+
+  .test {
+    width: 50%; 
   }
 `;
 
-const HomePageHeader = ({ term, onInputChange, fetchMovies}) => {
-
+const HomePageHeader = ({ term, onInputChange, fetchMovies }) => {
   return (
     <StyledHomePageHeader>
       <div className="header">
@@ -66,14 +96,24 @@ const HomePageHeader = ({ term, onInputChange, fetchMovies}) => {
         </div>
 
         <div className="input">
-         
-         <form>
-         <input name="searchTerm" onChange={onInputChange} value={term} type="text" placeholder="Search..." />
-         
-         <Link to={`/search/${term}`}>
-          <button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit">Click Me</button>
-         </Link>
-         </form>
+          <form className="form">
+            <input
+              name="searchTerm"
+              onChange={onInputChange}
+              value={term}
+              type="text"
+              placeholder="Search..."
+            />
+
+            <Link className="test" to={`/search/${term}`}>
+              <button
+                onClick={() => fetchMovies("search", "search/movie", term)}
+                type="submit"
+              >
+              <FcSearch className="search-btn" />
+              </button>
+            </Link>
+          </form>
         </div>
       </div>
     </StyledHomePageHeader>
@@ -86,4 +126,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { onInputChange, fetchMovies })(HomePageHeader);
+export default connect(mapStateToProps, { onInputChange, fetchMovies })(
+  HomePageHeader
+);
