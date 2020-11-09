@@ -47,8 +47,7 @@ const StyledHomePageHeader = styled.div`
   .form {
     display: flex;
     justify-content: center;
-    align-items: center;
-    border: 1px solid #0b0c10; 
+    align-items: center; 
   }
 
   input {
@@ -62,7 +61,7 @@ const StyledHomePageHeader = styled.div`
     background: #1f2833;
     border: none;
     outline: none;
-    width: 12rem; 
+    width: 11rem; 
   }
 
   .search-btn {
