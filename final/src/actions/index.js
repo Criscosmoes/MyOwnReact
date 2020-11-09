@@ -48,7 +48,7 @@ export const fetchMovies = (name, endpoint, query) => async dispatch => {
        }, 1000)
     }
 
-
+    window.scrollTo(0,0);
 
      
 }
