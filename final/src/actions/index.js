@@ -2,7 +2,7 @@
 import moviesDB from '../apis/moviesDB'; 
 
 
-export const fetchMovies = (name, endpoint) => async dispatch => {
+export const fetchMovies = (name, endpoint, query) => async dispatch => {
 
 
     name = name === 'top rated' ? 'topRated' : name ; 
@@ -10,17 +10,38 @@ export const fetchMovies = (name, endpoint) => async dispatch => {
 
     const KEY = '2d241abde6516d29ca9254c83e3cfc34'
 
-    const response = await moviesDB.get(endpoint, {
-        params: {
-            api_key: KEY,  
-        }
-    }); 
+    if(query === undefined){
+        const response = await moviesDB.get(endpoint, {
+            params: {
+                api_key: KEY,  
+            }
+        }); 
+
+        console.log(response); 
+
+        dispatch({type: "FETCH_MOVIES", payload: {
+            name: name, 
+            arr: response.data.results, 
+        }})
+    }
+    else if(query !== undefined){
+        const response = await moviesDB.get(endpoint, {
+            params: {
+                api_key: KEY,  
+                query: query, 
+            }
+        }); 
+
+        console.log(response); 
+
+        dispatch({type: "FETCH_MOVIES", payload: {
+            name: name, 
+            arr: response.data.results, 
+        }})
+    }
 
 
-    dispatch({type: "FETCH_MOVIES", payload: {
-        name: name, 
-        arr: response.data.results, 
-    }})
+
      
 }
 
@@ -57,7 +78,6 @@ export const fetchTrailers = (id) => async dispatch => {
    
 }
 
-
 export const switchOpen = () => {
 
     return {
@@ -65,7 +85,6 @@ export const switchOpen = () => {
     }
 
 }
-
 
 
 export const switchSearch = () => {
@@ -83,5 +102,29 @@ export const flipCard = (e) => {
 
     return {
         type: "FLIP_CARD", 
+    }
+}
+
+
+export const onInputChange = e => {
+
+    console.log(e.target); 
+
+    return {
+        type: "INPUT_CHANGE", 
+        payload: {
+            name: e.target.name, 
+            term: e.target.value, 
+        }
+    }
+
+}
+
+
+export const clearFields = () => {
+
+
+    return {
+        type: "CLEAR_FIELDS", 
     }
 }

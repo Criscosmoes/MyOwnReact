@@ -3,14 +3,15 @@ import '../App.css';
 
 import NavBar from './NavBar';
 import HomePage from './HomePage';
-
+import WatchTrailer from './WatchTrailer';
+import Search from './Search';
 
 import { Switch, Route } from 'react-router-dom'; 
 
 
 import { fetchMovies, fetchTrailers } from './../actions/index';
 import { connect } from 'react-redux';
-import WatchTrailer from './WatchTrailer';
+
 
 
 
@@ -48,11 +49,16 @@ const App = ({movies, fetchMovies}) => {
                     <h1>Upcoming</h1>
                 </Route>
 
-                <Route path="/movie/:id">
+                <Route path="/movie/:id" exact>
                     <NavBar /> 
                     <WatchTrailer /> 
                 </Route>
 
+                <Route path="/search/:search" exact>
+                    <NavBar /> 
+                    <Search movies={movies.search} /> 
+                    
+                </Route>
             </Switch>
         </div>
     )

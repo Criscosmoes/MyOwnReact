@@ -2,6 +2,7 @@ const initialState = {
     movies: {
         trending: [], 
         topRated: [], 
+        search: [], 
     },
 
     information: {
@@ -9,6 +10,7 @@ const initialState = {
         cast: [], 
     },
 
+    navSearchTerm: '', 
     searchTerm: '', 
     isOpen: false, 
     searchOpen: false, 
@@ -63,6 +65,19 @@ export default (state = initialState, action) => {
                 cast: action.payload.cast, 
             }
         }
+        case "INPUT_CHANGE": 
+
+            return {
+                ...state, 
+                [action.payload.name]: action.payload.term, 
+            }
+        case "CLEAR_FIELDS": 
+
+            return {
+                ...state, 
+                navSearchTerm: '', 
+                searchTerm: '', 
+            }
         default: 
             return state; 
     }
