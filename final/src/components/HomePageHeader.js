@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { FcSearch } from 'react-icons/fc'
+import { FcSearch } from "react-icons/fc";
 
 import { onInputChange, fetchMovies } from "../actions";
 
@@ -17,13 +17,13 @@ const StyledHomePageHeader = styled.div`
     flex-direction: column;
     background-image: url(${"https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"});
     background-size: cover;
-    background-position: 20% 67%; 
+    background-position: 20% 67%;
     color: white;
     height: 40vh;
   }
 
   .header > * {
-    margin: 2%; 
+    margin: 2%;
   }
 
   .info > * {
@@ -31,7 +31,7 @@ const StyledHomePageHeader = styled.div`
   }
 
   .info {
-    width: 95%; 
+    width: 95%;
   }
 
   h1 {
@@ -40,47 +40,39 @@ const StyledHomePageHeader = styled.div`
 
   p {
     font-size: 2rem;
-    line-height: 1.3; 
+    line-height: 1.3;
   }
 
-  input {
-    width: 100%;
-    outline: none;
-    font-size: 2rem;
-    height: 100%; 
-  }
 
-  .input {
+  .form {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #0b0c10; 
   }
 
-  .form {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    border: 2px solid #66fcf1;  
+  input {
+    height: 100%; 
+    width: 60%; 
+    border: none; 
+    outline: none; 
   }
 
   button {
-    background: #1f2833; 
-    border: none; 
-    outline: none; 
-    width: 100%; 
+    background: #1f2833;
+    border: none;
+    outline: none;
+    width: 12rem; 
   }
 
   .search-btn {
-    font-size: 2rem; 
+    font-size: 2rem;
     background: transparent;
-    border: none; 
-    outline: none;  
-    height: 100%; 
+    border: none;
+    outline: none;
   }
 
-  .test {
-    width: 50%; 
-  }
+
 `;
 
 const HomePageHeader = ({ term, onInputChange, fetchMovies }) => {
@@ -94,26 +86,24 @@ const HomePageHeader = ({ term, onInputChange, fetchMovies }) => {
           </p>
         </div>
 
-        <div className="input">
-          <form className="form">
-            <input
-              name="searchTerm"
-              onChange={onInputChange}
-              value={term}
-              type="text"
-              placeholder="Search..."
-            />
+        <form className="form">
+          <input
+            name="searchTerm"
+            onChange={onInputChange}
+            value={term}
+            type="text"
+            placeholder="Search..."
+          />
 
-            <Link className="test" to={`/search/${term}`}>
-              <button
-                onClick={() => fetchMovies("search", "search/movie", term)}
-                type="submit"
-              >
+          <Link className="test" to={`/search/${term}`}>
+            <button
+              onClick={() => fetchMovies("search", "search/movie", term)}
+              type="submit"
+            >
               <FcSearch className="search-btn" />
-              </button>
-            </Link>
-          </form>
-        </div>
+            </button>
+          </Link>
+        </form>
       </div>
     </StyledHomePageHeader>
   );
