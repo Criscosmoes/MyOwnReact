@@ -54,8 +54,8 @@ const StyledHomePageHeader = styled.div`
   input {
     height: 100%; 
     width: 60%; 
-    border: none; 
     outline: none; 
+    border-radius: 0%; 
   }
 
   button {
