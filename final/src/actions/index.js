@@ -5,6 +5,8 @@ import moviesDB from '../apis/moviesDB';
 export const fetchMovies = (name, endpoint, query) => async dispatch => {
 
 
+    dispatch({type: "CHANGE_LOADING", payload: true})
+
     name = name === 'top rated' ? 'topRated' : name ; 
 
 
@@ -17,12 +19,15 @@ export const fetchMovies = (name, endpoint, query) => async dispatch => {
             }
         }); 
 
-        console.log(response); 
 
+       
         dispatch({type: "FETCH_MOVIES", payload: {
             name: name, 
             arr: response.data.results, 
+            isLoading: false, 
+
         }})
+    
     }
     else if(query !== undefined){
         const response = await moviesDB.get(endpoint, {
@@ -32,12 +37,15 @@ export const fetchMovies = (name, endpoint, query) => async dispatch => {
             }
         }); 
 
-        console.log(response); 
+    
 
-        dispatch({type: "FETCH_MOVIES", payload: {
-            name: name, 
-            arr: response.data.results, 
-        }})
+       setTimeout(function() {
+            dispatch({type: "FETCH_MOVIES", payload: {
+                name: name, 
+                arr: response.data.results,
+                isLoading: false, 
+            }})
+       }, 1000)
     }
 
 
@@ -62,8 +70,6 @@ export const fetchTrailers = (id) => async dispatch => {
             api_key: KEY
         }
     })
-
-    console.log(cast.data.cast); 
 
 
     dispatch({

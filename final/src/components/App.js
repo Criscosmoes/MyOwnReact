@@ -9,8 +9,8 @@ import Search from './Search';
 import { Switch, Route } from 'react-router-dom'; 
 
 
-import { fetchMovies, fetchTrailers } from './../actions/index';
-import { connect } from 'react-redux';
+import { fetchMovies } from './../actions/index';
+import { connect } from 'react-redux'; 
 
 
 
@@ -24,7 +24,7 @@ const App = ({movies, fetchMovies}) => {
        fetchMovies('trending', 'trending/all/week'); 
 
 
-    }, [])
+    }, [fetchMovies])
 
     return (
         <div className="App">

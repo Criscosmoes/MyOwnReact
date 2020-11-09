@@ -15,6 +15,7 @@ const initialState = {
     isOpen: false, 
     searchOpen: false, 
     isFlipped: false, 
+    isLoading: true, 
 }
 
 
@@ -30,7 +31,8 @@ export default (state = initialState, action) => {
                 movies: {
                     ...state.movies, 
                     [action.payload.name]: [...action.payload.arr]
-                } 
+                }, 
+                isLoading: action.payload.isLoading, 
             }
         case "ADD_TERM": 
 
@@ -77,6 +79,12 @@ export default (state = initialState, action) => {
                 ...state, 
                 navSearchTerm: '', 
                 searchTerm: '', 
+            }
+        case "CHANGE_LOADING": 
+
+            return {
+                ...state, 
+                isLoading: action.payload, 
             }
         default: 
             return state; 

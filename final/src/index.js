@@ -12,6 +12,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //react router
 import { BrowserRouter as Router } from "react-router-dom";
 
+//react bootstrap
+
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

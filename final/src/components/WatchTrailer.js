@@ -61,8 +61,8 @@ const WatchTrailer = ({trailers, cast}) => {
 
     const castList = filteredList.map(cur => {
         return (
-            <div className="cast">
-                {<img src={`https://image.tmdb.org/t/p/w300/${cur.profile_path}`} />}
+            <div key={cur.id} className="cast">
+                {<img src={`https://image.tmdb.org/t/p/w300/${cur.profile_path}`}  />}
                 <h2>{cur.name} as <br></br> {cur.character}</h2>
             </div> 
         )
@@ -73,7 +73,7 @@ const WatchTrailer = ({trailers, cast}) => {
         <StyledWatchTrailer>
             <div className="container">
                 <div className="trailer">{trailers.length === 0 ? <div>Try again!</div> : 
-                <iframe allowFullScreen src={`https://www.youtube.com/embed/${trailers[0].key}`} />}</div> 
+                <iframe allowFullScreen src={`https://www.youtube.com/embed/${trailers[0].key}`} alt={"example"} />}</div> 
 
                 <div className="list">
                     {castList}

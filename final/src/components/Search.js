@@ -8,6 +8,8 @@ import { fetchTrailers } from "../actions";
 
 import { motion } from "framer-motion";
 
+import Spinner from './Spinner'; 
+
 const StyledSearch = styled.div`
   h1 {
     margin: 2%;
@@ -49,7 +51,7 @@ const StyledSearch = styled.div`
     flex-direction: column;
     text-align: center;
     height: 100%;
-    margin: 1%; 
+    margin: 1%;
   }
 
   .info > * {
@@ -57,13 +59,16 @@ const StyledSearch = styled.div`
   }
 `;
 
-const Search = ({ movies, fetchTrailers }) => {
+const Search = ({ movies, fetchTrailers, isLoading }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
   const renderedList = filteredList.map((cur) => {
     return (
       <div className="movie">
-        <img src={`https://image.tmdb.org/t/p/original/${cur.poster_path}`} />
+        <img
+          alt={cur.title}
+          src={`https://image.tmdb.org/t/p/original/${cur.poster_path}`}
+        />
         <div className="info">
           <h2>{cur.title}</h2>
           <p>{cur.overview}</p>
@@ -77,20 +82,30 @@ const Search = ({ movies, fetchTrailers }) => {
 
   return (
     <StyledSearch>
-      <motion.div
-        exit={{ opacity: 0 }}
-        animate={{ opacity: 1, }}
-        initial={{ opacity: 0,}}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="movie-container"
-      >
-        <h1>Results: {movies.length}</h1>
-        {renderedList}
-      </motion.div>
+      {isLoading ? (
+        <div>
+          <Spinner /> 
+        </div>
+      ) : (
+        <motion.div
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="movie-container"
+        >
+          <h1>Results: {movies.length}</h1>
+          {renderedList}
+        </motion.div>
+      )}
     </StyledSearch>
   );
 };
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.isLoading,
+  };
+};
 
 export default connect(mapStateToProps, { fetchTrailers })(Search);
