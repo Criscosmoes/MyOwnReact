@@ -5,8 +5,8 @@ const initialState = {
     },
 
     information: {
-        images: [], 
         trailers: [], 
+        cast: [], 
     },
 
     searchTerm: '', 
@@ -29,15 +29,6 @@ export default (state = initialState, action) => {
                     ...state.movies, 
                     [action.payload.name]: [...action.payload.arr]
                 } 
-            }
-        case "FETCH_TRAILERS": 
-
-            return {
-                ...state, 
-                information: {
-                    ...state.information, 
-                    trailers: [...state.information.trailers, action.payload]
-                }
             }
         case "ADD_TERM": 
 
@@ -62,6 +53,16 @@ export default (state = initialState, action) => {
             return {
                 ...state, 
             }
+        case "FETCH_TRAILERS": 
+
+        return {
+            ...state, 
+            information: {
+                ...state.information, 
+                trailers: action.payload.trailers, 
+                cast: action.payload.cast, 
+            }
+        }
         default: 
             return state; 
     }

@@ -10,20 +10,20 @@ import { Switch, Route } from 'react-router-dom';
 
 import { fetchMovies, fetchTrailers } from './../actions/index';
 import { connect } from 'react-redux';
+import WatchTrailer from './WatchTrailer';
 
 
 
-const App = ({movies, fetchMovies, fetchTrailers}) => {
+const App = ({movies, fetchMovies}) => {
 
 
     useEffect(() => {
 
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
-       fetchTrailers('740985', 'movie'); 
 
 
-    }, [fetchMovies, fetchTrailers])
+    }, [])
 
     return (
         <div className="App">
@@ -50,7 +50,7 @@ const App = ({movies, fetchMovies, fetchTrailers}) => {
 
                 <Route path="/movie/:id">
                     <NavBar /> 
-                    <h1>movie id</h1>
+                    <WatchTrailer /> 
                 </Route>
 
             </Switch>
@@ -61,10 +61,10 @@ const App = ({movies, fetchMovies, fetchTrailers}) => {
 
 const mapStateToProps = state => {
 
-    return {
-        movies: state.movies
+    return { 
+        movies: state.movies, 
     }
 }
 
 
-export default connect(mapStateToProps, { fetchMovies, fetchTrailers })(App); 
+export default connect(mapStateToProps, { fetchMovies })(App); 

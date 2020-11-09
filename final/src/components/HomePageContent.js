@@ -2,7 +2,10 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { flipCard } from "../actions";
+
+import { Link } from 'react-router-dom'; 
+
+import { flipCard, fetchTrailers } from "../actions";
 import { connect } from "react-redux";
 
 const StyledHomePageContent = styled.div`
@@ -32,6 +35,7 @@ const StyledHomePageContent = styled.div`
     -moz-box-shadow: 5px 5px 40px black;
     -webkit-box-shadow: 5px 5px 40px black;
     box-shadow: 10px 10px 30px black;
+    
   }
 
   .card__face--back {
@@ -57,25 +61,24 @@ const StyledHomePageContent = styled.div`
 
   .info {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 20%;
+    height: 25%;
   }
 
   .title {
     text-align: center;
-    height: 100%;
+    font-size: 1.2rem;  
   }
 
   img {
     width: 100%;
-    height: 80%;
+    height: 75%;
   }
 
   h3 {
-    font-size: 1.4rem;
-    margin: 1%; 
+    font-size: 1.2rem;
   }
 
   h2 {
@@ -92,7 +95,7 @@ const StyledHomePageContent = styled.div`
   }
 `;
 
-const HomePageContent = ({ movies, title, flipCard }) => {
+const HomePageContent = ({ movies, title, flipCard, fetchTrailers }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
   const moviesList = filteredList.map((cur) => {
@@ -110,6 +113,7 @@ const HomePageContent = ({ movies, title, flipCard }) => {
                 Rating:{" "}
                 {`${cur.vote_average}  ${cur.vote_average > 7.5 ? "🔥" : ""}`}
               </h3>
+              <Link to={`/movie/${cur.id}`}><button onClick={() => fetchTrailers(cur.id)}>Watch Trailer</button></Link>
             </div>
           </div>
           <div className="card__face card__face--back">
@@ -135,4 +139,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { flipCard })(HomePageContent);
+export default connect(mapStateToProps, { flipCard, fetchTrailers })(HomePageContent);

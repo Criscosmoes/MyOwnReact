@@ -25,19 +25,36 @@ export const fetchMovies = (name, endpoint) => async dispatch => {
 }
 
 
-export const fetchTrailers = (id, endpoint) => async dispatch => {
+export const fetchTrailers = (id) => async dispatch => {
 
     const KEY = '2d241abde6516d29ca9254c83e3cfc34'
 
-    const response = await moviesDB.get(`${endpoint}/${id}/videos`, {
+    const response = await moviesDB.get(`movie/${id}/videos`, {
         params: {
             api_key: KEY, 
-            movie_id: id, 
+        }
+    }); 
+
+
+    const cast = await moviesDB.get(`movie/${id}/credits`, {
+        params: {
+            api_key: KEY
+        }
+    })
+
+    console.log(cast.data.cast); 
+
+
+    dispatch({
+        type: "FETCH_TRAILERS", 
+        payload: {
+            trailers: response.data.results, 
+            cast: cast.data.cast, 
         }
     })
 
 
-    dispatch({type: "FETCH_TRAILERS", payload: response.data.results[0].key })
+   
 }
 
 
