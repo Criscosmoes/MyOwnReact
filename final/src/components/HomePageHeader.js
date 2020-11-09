@@ -28,7 +28,6 @@ const StyledHomePageHeader = styled.div`
 
   .info > * {
     margin-left: 4%;
-    margin: 1%; 
   }
 
   .info {
@@ -46,9 +45,9 @@ const StyledHomePageHeader = styled.div`
 
   input {
     width: 100%;
-    border: none;
     outline: none;
     font-size: 2rem;
+    height: 100%; 
   }
 
   .input {
@@ -61,8 +60,7 @@ const StyledHomePageHeader = styled.div`
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    border: 2px solid #66fcf1; 
-    width: 100%;  
+    border: 2px solid #66fcf1;  
   }
 
   button {
@@ -77,6 +75,7 @@ const StyledHomePageHeader = styled.div`
     background: transparent;
     border: none; 
     outline: none;  
+    height: 100%; 
   }
 
   .test {
