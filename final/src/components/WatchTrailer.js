@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { connect, ReactReduxContext } from "react-redux";
-import { motion } from 'framer-motion'; 
+import { motion } from "framer-motion";
 
 const StyledWatchTrailer = styled.div`
   .container {
@@ -10,19 +10,17 @@ const StyledWatchTrailer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 1%;
   }
 
   .trailer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 7%;
     width: 100%;
   }
 
   iframe {
-    margin: 2%;
+    margin: 1%;
     width: 90%;
     height: 30vh;
     border: 4px solid white;
@@ -50,21 +48,42 @@ const StyledWatchTrailer = styled.div`
     height: 150px;
   }
 
+  .title {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      background: #1f2833; 
+      height: 5vh;
+  }
   h1 {
-      text-align: center; 
+    text-align: center;
+    font-size: 3rem; 
+    background: #1f2833;
+    color: white;
   }
 
   .video-container {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 40vh;
-    background-position: center; 
-    background-size: cover; 
+    background-position: center;
+    background-size: cover;
+    color: white;
+    font-size: 3rem;
+  }
+
+  .rating {
+    width: 100%; 
+    background: #1f2833;  
+    text-align: center; 
+    height: 10vh; 
     color: white; 
-    font-size: 3rem; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
   }
 `;
 
@@ -82,18 +101,20 @@ const WatchTrailer = ({ trailers, cast, search, title }) => {
     );
   });
 
-
-  const currentVideo = search.filter(cur => title === cur.id); 
-
+  const currentVideo = search.filter((cur) => title === cur.id);
 
   const style = {
-      backgroundImage: currentVideo.length === 0 ? '' : `url(${`https://image.tmdb.org/t/p/original/${currentVideo[0].backdrop_path}`})`
-  }
+    backgroundImage:
+      currentVideo.length === 0
+        ? ""
+        : `url(${`https://image.tmdb.org/t/p/original/${currentVideo[0].backdrop_path}`})`,
+  };
 
-  console.log(currentVideo); 
+  console.log(currentVideo);
 
   return (
     <StyledWatchTrailer>
+        <div className="title"><h1>{currentVideo.length === 0 ? '' : currentVideo[0].title} Trailer</h1></div>
       <motion.div
         exit={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -106,16 +127,21 @@ const WatchTrailer = ({ trailers, cast, search, title }) => {
             <div>Try again!</div>
           ) : (
             <div className="video-container" style={style}>
-                <h1>{`${currentVideo[0].title} Trailer`}</h1>
-                <iframe
-              allowFullScreen
-              src={`https://www.youtube.com/embed/${trailers[0].key}`}
-              alt={"example"}
-            />
+              <iframe
+                allowFullScreen
+                src={`https://www.youtube.com/embed/${trailers[0].key}`}
+                alt={"example"}
+              />
             </div>
           )}
         </div>
-
+        <div className="rating">
+          <div>
+            User Rating:
+            {currentVideo.length === 0 ? "" : currentVideo[0].vote_average}{" "}
+          </div>
+        </div>
+        <h2>Cast: </h2>
         <div className="list">{castList}</div>
       </motion.div>
     </StyledWatchTrailer>
@@ -126,8 +152,8 @@ const mapStateToProps = (state) => {
   return {
     trailers: state.information.trailers,
     cast: state.information.cast,
-    title: state.title, 
-    search: state.movies.search, 
+    title: state.title,
+    search: state.movies.search,
   };
 };
 
