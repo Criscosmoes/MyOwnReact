@@ -87,8 +87,10 @@ const WatchTrailer = ({ trailers, cast, search, title }) => {
 
 
   const style = {
-      backgroundImage: `url(${`https://image.tmdb.org/t/p/original/${currentVideo[0].backdrop_path}`})`
+      backgroundImage: currentVideo.length === 0 ? '' : `url(${`https://image.tmdb.org/t/p/original/${currentVideo[0].backdrop_path}`})`
   }
+
+  console.log(currentVideo); 
 
   return (
     <StyledWatchTrailer>
