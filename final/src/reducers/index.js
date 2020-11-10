@@ -85,8 +85,14 @@ export default (state = initialState, action) => {
 
             return {
                 ...state, 
+                information: {
+                    trailers: [], 
+                    cast: [], 
+                }, 
                 navSearchTerm: '', 
                 searchTerm: '', 
+                title: 0, 
+
             }
         case "CHANGE_LOADING": 
 

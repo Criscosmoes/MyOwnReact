@@ -53,7 +53,7 @@ const StyledWatchTrailer = styled.div`
       justify-content: center; 
       align-items: center; 
       background: #1f2833; 
-      height: 5vh;
+      height: 11vh;
   }
   h1 {
     text-align: center;
@@ -87,7 +87,7 @@ const StyledWatchTrailer = styled.div`
   }
 `;
 
-const WatchTrailer = ({ trailers, cast, search, title }) => {
+const WatchTrailer = ({ trailers, cast, search, title, trending, topRated}) => {
   const filteredList = cast.filter((cur) => cur.profile_path !== null);
 
   const castList = filteredList.map((cur) => {
@@ -101,7 +101,9 @@ const WatchTrailer = ({ trailers, cast, search, title }) => {
     );
   });
 
-  const currentVideo = search.filter((cur) => title === cur.id);
+  const allMovies = [...search, ...trending, ...topRated]; 
+
+  const currentVideo = allMovies.filter((cur) => title === cur.id);
 
   const style = {
     backgroundImage:
@@ -137,8 +139,8 @@ const WatchTrailer = ({ trailers, cast, search, title }) => {
         </div>
         <div className="rating">
           <div>
-            User Rating:
-            {currentVideo.length === 0 ? "" : currentVideo[0].vote_average}{" "}
+            User Rating: 
+            {currentVideo.length === 0 ? "" : " "+ currentVideo[0].vote_average}{" "}
           </div>
         </div>
         <h2>Cast: </h2>
@@ -154,6 +156,10 @@ const mapStateToProps = (state) => {
     cast: state.information.cast,
     title: state.title,
     search: state.movies.search,
+    trending: state.movies.trending, 
+    topRated: state.movies.topRated, 
+
+
   };
 };
 

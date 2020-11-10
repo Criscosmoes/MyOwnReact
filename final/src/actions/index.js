@@ -60,27 +60,44 @@ export const fetchTrailers = (id) => async dispatch =>  {
     const KEY = '2d241abde6516d29ca9254c83e3cfc34'
     
 
-    const response = await moviesDB.get(`movie/${id}/videos`, {
-        params: {
-            api_key: KEY, 
-        }
-    }); 
+    try {
+        const response = await moviesDB.get(`movie/${id}/videos`, {
+            params: {
+                api_key: KEY, 
+            }
+        }); 
 
 
-    const cast = await moviesDB.get(`movie/${id}/credits`, {
-        params: {
-            api_key: KEY
-        }
-    })
+        const cast = await moviesDB.get(`movie/${id}/credits`, {
+            params: {
+                api_key: KEY
+            }
+        })
 
-    dispatch({
-        type: "FETCH_TRAILERS", 
-        payload: {
-            trailers: response.data.results, 
-            cast: cast.data.cast, 
-            id: id, 
+        if(response.data.results.length === 0){
+            
         }
-    })
+
+        dispatch({
+            type: "FETCH_TRAILERS", 
+            payload: {
+                trailers: response.data.results, 
+                cast: cast.data.cast, 
+                id: id, 
+            }
+        })
+
+    } catch (error) {
+        console.log('failed'); 
+    }
+
+
+
+   /*  if(response.data.results.length === 0 || response.data === undefined){
+        console.log("no trailers"); 
+    } */
+
+  
 
 
 
