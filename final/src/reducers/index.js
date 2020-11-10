@@ -1,3 +1,5 @@
+import { AiTwotoneEnvironment } from "react-icons/ai"
+
 const initialState = {
     movies: {
         trending: [], 
@@ -16,6 +18,7 @@ const initialState = {
     searchOpen: false, 
     isFlipped: false, 
     isLoading: true, 
+    title: 0, 
 }
 
 
@@ -33,6 +36,7 @@ export default (state = initialState, action) => {
                     [action.payload.name]: [...action.payload.arr]
                 }, 
                 isLoading: action.payload.isLoading, 
+                searchOpen: false, 
             }
         case "ADD_TERM": 
 
@@ -65,7 +69,11 @@ export default (state = initialState, action) => {
                 ...state.information, 
                 trailers: action.payload.trailers, 
                 cast: action.payload.cast, 
-            }
+             
+            }, 
+
+            searchOpen: false,
+            title: action.payload.id,
         }
         case "INPUT_CHANGE": 
 

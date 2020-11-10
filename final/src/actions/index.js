@@ -54,9 +54,11 @@ export const fetchMovies = (name, endpoint, query) => async dispatch => {
 }
 
 
-export const fetchTrailers = (id) => async dispatch => {
+export const fetchTrailers = (id) => async dispatch =>  {
+
 
     const KEY = '2d241abde6516d29ca9254c83e3cfc34'
+    
 
     const response = await moviesDB.get(`movie/${id}/videos`, {
         params: {
@@ -71,14 +73,15 @@ export const fetchTrailers = (id) => async dispatch => {
         }
     })
 
-
     dispatch({
         type: "FETCH_TRAILERS", 
         payload: {
             trailers: response.data.results, 
             cast: cast.data.cast, 
+            id: id, 
         }
     })
+
 
 
    
@@ -113,8 +116,6 @@ export const flipCard = (e) => {
 
 
 export const onInputChange = e => {
-
-    console.log(e.target); 
 
     return {
         type: "INPUT_CHANGE", 

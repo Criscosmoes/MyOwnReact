@@ -64,7 +64,7 @@ const Search = ({ movies, fetchTrailers, isLoading }) => {
 
   const renderedList = filteredList.map((cur) => {
     return (
-      <div className="movie">
+      <div key={cur.id} className="movie">
         <img
           alt={cur.title}
           src={`https://image.tmdb.org/t/p/original/${cur.poster_path}`}
@@ -89,9 +89,9 @@ const Search = ({ movies, fetchTrailers, isLoading }) => {
       ) : (
         <motion.div
           exit={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 1, }}
           initial={{ opacity: 0 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
           className="movie-container"
         >
           <h1>Results: {movies.length}</h1>
