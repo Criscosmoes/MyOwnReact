@@ -1,4 +1,3 @@
-import { AiTwotoneEnvironment } from "react-icons/ai"
 
 const initialState = {
     movies: {
@@ -10,7 +9,13 @@ const initialState = {
     information: {
         trailers: [], 
         cast: [], 
-    },
+        youtubeTrailersId: '', 
+        id: '', 
+        movie: {
+            title: '', 
+            backdrop_path: '', 
+        }
+    }, 
 
     navSearchTerm: '', 
     searchTerm: '', 
@@ -18,7 +23,6 @@ const initialState = {
     searchOpen: false, 
     isFlipped: false, 
     isLoading: true, 
-    title: 0, 
 }
 
 
@@ -69,6 +73,13 @@ export default (state = initialState, action) => {
                 ...state.information, 
                 trailers: action.payload.trailers, 
                 cast: action.payload.cast, 
+                youtubeTrailersId: action.payload.youtubeTrailersId, 
+                id: action.payload.id, 
+                movie: {
+                    ...state.information.movie, 
+                    title: action.payload.title, 
+                    backdrop_path: action.payload.backgroundImage,  
+                }
              
             }, 
 
@@ -88,10 +99,14 @@ export default (state = initialState, action) => {
                 information: {
                     trailers: [], 
                     cast: [], 
+                    movie: {
+                        ...state.information.movie, 
+                        title: '', 
+                    }
                 }, 
                 navSearchTerm: '', 
                 searchTerm: '', 
-                title: 0, 
+                
 
             }
         case "CHANGE_LOADING": 

@@ -73,7 +73,7 @@ const Search = ({ movies, fetchTrailers, isLoading }) => {
           <h2>{cur.title}</h2>
           <p>{cur.overview}</p>
           <Link to={`/movie/${cur.id}`}>
-            <button onClick={() => fetchTrailers(cur.id)}>Watch Trailer</button>
+            <button onClick={() => fetchTrailers(cur.id, cur)}>Watch Trailer</button>
           </Link>
         </div>
       </div>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 
-import { connect, ReactReduxContext } from "react-redux";
+import { connect } from "react-redux";
 import { motion } from "framer-motion";
+
 
 const StyledWatchTrailer = styled.div`
   .container {
@@ -87,7 +88,7 @@ const StyledWatchTrailer = styled.div`
   }
 `;
 
-const WatchTrailer = ({ trailers, cast, search, title, trending, topRated}) => {
+const WatchTrailer = ({ trailers, cast, search, title, trending, topRated, youtubeID, movieTitle, backgroundImage}) => {
   const filteredList = cast.filter((cur) => cur.profile_path !== null);
 
   const castList = filteredList.map((cur) => {
@@ -109,14 +110,16 @@ const WatchTrailer = ({ trailers, cast, search, title, trending, topRated}) => {
     backgroundImage:
       currentVideo.length === 0
         ? ""
-        : `url(${`https://image.tmdb.org/t/p/original/${currentVideo[0].backdrop_path}`})`,
+        : `url(${`https://image.tmdb.org/t/p/original${backgroundImage}`})`,
   };
 
-  console.log(currentVideo);
+  console.log(youtubeID)
+
+
 
   return (
     <StyledWatchTrailer>
-        <div className="title"><h1>{currentVideo.length === 0 ? '' : currentVideo[0].title} Trailer</h1></div>
+        <div className="title"><h1>{movieTitle.length === 0 ? '' : movieTitle} Trailer</h1></div>
       <motion.div
         exit={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -126,7 +129,9 @@ const WatchTrailer = ({ trailers, cast, search, title, trending, topRated}) => {
       >
         <div className="trailer">
           {trailers.length === 0 ? (
-            <div>Try again!</div>
+            <div className="video-container" style={style}>
+              <iframe allowFullScreen src={`https://www.youtube.com/embed/${youtubeID}`} alt="example" />
+            </div>
           ) : (
             <div className="video-container" style={style}>
               <iframe
@@ -140,10 +145,10 @@ const WatchTrailer = ({ trailers, cast, search, title, trending, topRated}) => {
         <div className="rating">
           <div>
             User Rating: 
-            {currentVideo.length === 0 ? "" : " "+ currentVideo[0].vote_average}{" "}
+            {currentVideo.length === 0 ? "" : " "+ currentVideo[0].vote_average}
           </div>
         </div>
-        <h2>Cast: </h2>
+        <h2>{castList.length === 0 ? '' : 'Cast:' }</h2>
         <div className="list">{castList}</div>
       </motion.div>
     </StyledWatchTrailer>
@@ -158,6 +163,9 @@ const mapStateToProps = (state) => {
     search: state.movies.search,
     trending: state.movies.trending, 
     topRated: state.movies.topRated, 
+    youtubeID: state.information.youtubeTrailersId, 
+    movieTitle: state.information.movie.title, 
+    backgroundImage: state.information.movie.backdrop_path, 
 
 
   };

@@ -113,7 +113,7 @@ const HomePageContent = ({ movies, title, flipCard, fetchTrailers }) => {
                 Rating:{" "}
                 {`${cur.vote_average}  ${cur.vote_average > 7.5 ? "🔥" : ""}`}
               </h3>
-              <Link to={`/movie/${cur.id}`}><button onClick={() => fetchTrailers(cur.id)}>Watch Trailer</button></Link>
+              <Link to={`/movie/${cur.id}`}><button onClick={() => fetchTrailers(cur.id, cur)}>Watch Trailer</button></Link>
             </div>
           </div>
           <div className="card__face card__face--back">
