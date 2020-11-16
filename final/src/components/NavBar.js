@@ -74,6 +74,7 @@ const StyledNavBar = styled.div`
 
   .link {
     margin: 15%;
+    text-align: center; 
   }
 
   .click-search {
@@ -113,6 +114,9 @@ const NavBar = ({
   fetchMovies, 
   clearFields
 }) => {
+
+
+
   return (
     <StyledNavBar>
       <div className="navigation">
@@ -135,15 +139,15 @@ const NavBar = ({
           <AiOutlineClose className="search" onClick={switchOpen} />
 
           <Link className="link" onClick={switchOpen} to="/popular">
-            Popular
+            Popular Movies
           </Link>
 
-          <Link className="link" onClick={switchOpen} to="/top-rated">
-            Top Rated
+          <Link className="link" onClick={switchOpen} to="/now_playing">
+            Now Playing
           </Link>
 
           <Link className="link" onClick={switchOpen} to="/upcoming">
-            Upcoming
+            Upcoming Movies
           </Link>
         </div>
       </div>

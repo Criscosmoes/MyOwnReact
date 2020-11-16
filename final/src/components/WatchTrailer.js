@@ -113,9 +113,6 @@ const WatchTrailer = ({ trailers, cast, search, title, trending, topRated, youtu
         : `url(${`https://image.tmdb.org/t/p/original${backgroundImage}`})`,
   };
 
-  console.log(youtubeID)
-
-
 
   return (
     <StyledWatchTrailer>

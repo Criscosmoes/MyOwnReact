@@ -15,14 +15,16 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
       },
     });
 
-    dispatch({
-      type: "FETCH_MOVIES",
-      payload: {
-        name: name,
-        arr: response.data.results,
-        isLoading: false,
-      },
-    });
+    setTimeout(function () {
+      dispatch({
+        type: "FETCH_MOVIES",
+        payload: {
+          name: name,
+          arr: response.data.results,
+          isLoading: false,
+        },
+      }, 1000);
+    })
   } else if (query !== undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
@@ -48,7 +50,6 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
 
 export const fetchTrailers = (id, obj) => async (dispatch) => {
   const KEY = "2d241abde6516d29ca9254c83e3cfc34";
-  console.log(obj.backdrop_path);
 
   let title = "";
 
@@ -57,7 +58,6 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
   } else {
     title = obj.original_name;
   }
-  console.log(title);
 
   try {
     const response = await moviesDB.get(`movie/${id}/videos`, {
@@ -116,7 +116,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
 
   } catch (error) {
 
-    console.log('error!!!!!!!!!!!')
+    console.log(error); 
     const youtubeResponse = await youtube.get("search/", {
       params: {
         q: `${title} trailer`,

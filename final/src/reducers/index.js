@@ -2,7 +2,10 @@
 const initialState = {
     movies: {
         trending: [], 
-        topRated: [], 
+        topRated: [],
+        popular: [], 
+        now_playing: [], 
+        upcoming: [], 
         search: [], 
     },
 

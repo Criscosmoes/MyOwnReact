@@ -22,6 +22,9 @@ const App = ({movies, fetchMovies}) => {
 
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
+       fetchMovies('popular', 'movie/popular'); 
+       fetchMovies('now_playing', 'movie/now_playing'); 
+       fetchMovies('upcoming', 'movie/upcoming')
 
 
     }, [fetchMovies])
@@ -36,17 +39,18 @@ const App = ({movies, fetchMovies}) => {
 
                 <Route path="/popular" exact>
                     <NavBar /> 
-                    <h1>Popular</h1>
+                    <Search movies={movies.popular} /> 
                 </Route>
 
-                <Route path="/top-rated" exact>
+                <Route path="/now_playing" exact>
                     <NavBar /> 
-                    <h1>Top Rated</h1>
+                    <Search movies={movies.now_playing} /> 
+                    
                 </Route>
 
                 <Route path="/upcoming" exact>
                     <NavBar /> 
-                    <h1>Upcoming</h1>
+                    <Search movies={movies.upcoming} />
                 </Route>
 
                 <Route path="/movie/:id" exact>
