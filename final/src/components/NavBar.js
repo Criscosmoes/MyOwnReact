@@ -102,6 +102,11 @@ const StyledNavBar = styled.div`
   .hidden-btn {
     border: none; 
   }
+
+  form {
+    width: 100%; 
+  }
+
 `;
 
 const NavBar = ({
