@@ -7,6 +7,7 @@ const initialState = {
         now_playing: [], 
         upcoming: [], 
         search: [], 
+        trendingToday: [], 
     },
 
     information: {

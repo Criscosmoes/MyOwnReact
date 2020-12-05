@@ -22,6 +22,7 @@ const App = ({movies, fetchMovies}) => {
 
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
+       fetchMovies('trendingToday', 'trending/movie/day')
        fetchMovies('popular', 'movie/popular'); 
        fetchMovies('now_playing', 'movie/now_playing'); 
        fetchMovies('upcoming', 'movie/upcoming')
@@ -34,7 +35,7 @@ const App = ({movies, fetchMovies}) => {
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    <HomePage trending={movies.trending} topRated={movies.topRated} />
+                    <HomePage trending={movies.trending} topRated={movies.topRated} trendingToday={movies.trendingToday} />
                 </Route>
 
                 <Route path="/popular" exact>
