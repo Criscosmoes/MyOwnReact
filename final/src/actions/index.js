@@ -1,12 +1,13 @@
 import moviesDB from "../apis/moviesDB";
 import youtube from "../apis/youtube";
+import { keys } from '../keys/keys';  
 
 export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   dispatch({ type: "CHANGE_LOADING", payload: true });
 
   name = name === "top rated" ? "topRated" : name;
 
-  const KEY = "2d241abde6516d29ca9254c83e3cfc34";
+  const KEY = keys.movies_db_key;
 
   if (query === undefined) {
     const response = await moviesDB.get(endpoint, {
@@ -49,7 +50,7 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
 };
 
 export const fetchTrailers = (id, obj) => async (dispatch) => {
-  const KEY = "2d241abde6516d29ca9254c83e3cfc34";
+  const KEY = keys.movies_db_key;
 
   let title = "";
 
@@ -80,7 +81,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
           q: `${title} trailer`,
           part: "snippet",
           maxResults: 5,
-          key: "AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do",
+          key: keys.youtube_api_key,
         },
       });
 
@@ -122,7 +123,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
         q: `${title} trailer`,
         part: "snippet",
         maxResults: 5,
-        key: "AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do",
+        key: keys.youtube_api_key,
       },
     });
 
