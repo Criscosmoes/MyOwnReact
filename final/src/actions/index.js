@@ -1,6 +1,6 @@
 import moviesDB from "../apis/moviesDB";
 import youtube from "../apis/youtube";
-import { keys } from "../keys/keys";
+import { keys } from '../keys'; 
 
 export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   dispatch({ type: "CHANGE_LOADING", payload: true });
