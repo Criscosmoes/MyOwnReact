@@ -3,7 +3,6 @@ import '../App.css';
 
 import NavBar from './NavBar';
 import HomePage from './HomePage';
-import WatchTrailer from './WatchTrailer';
 import Search from './Search';
 import WatchTrailerv2 from './WatchTrailerv2'; 
 

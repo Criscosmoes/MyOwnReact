@@ -1,5 +1,6 @@
 import moviesDB from "../apis/moviesDB";
 import youtube from "../apis/youtube";
+import { keys } from '../keys'; 
 
 
 export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
@@ -10,7 +11,7 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   if (query === undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
       },
     });
 
@@ -30,7 +31,7 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   } else if (query !== undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
         query: query,
       },
     });
@@ -63,13 +64,13 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
   try {
     const response = await moviesDB.get(`movie/${id}/videos`, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
       },
     });
 
     const cast = await moviesDB.get(`movie/${id}/credits`, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
       },
     });
 
@@ -81,7 +82,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
           q: `${title} trailer`,
           part: "snippet",
           maxResults: 5,
-          key: process.env.REACT_APP_YOUTUBE_KEY,
+          key: keys.youtube_api_key,
         },
       });
 
@@ -116,7 +117,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
         q: `${title} trailer`,
         part: "snippet",
         maxResults: 5,
-        key: process.env.REACT_APP_YOUTUBE_KEY,
+        key: keys.youtube_api_key,
       },
     });
 
@@ -177,14 +178,14 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
     // fectch trailers
     const trailers = await moviesDB.get(`/movie/${id}/videos`, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
       },
     });
 
     //fetch cast
     const cast = await moviesDB.get(`/movie/${id}/credits`, {
       params: {
-        api_key: process.env.REACT_APP_MOVIES_DB_KEY,
+        api_key: keys.movies_db_key,
       },
     });
 
@@ -195,7 +196,7 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
           q: `${movie.original_name} trailer`,
           part: "snippet",
           maxResults: 5,
-          key: process.env.REACT_APP_YOUTUBE_KEY,
+          key: keys.youtube_api_key,
         },
       });
 
@@ -228,7 +229,7 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
         q: `${movie.original_name} trailer`,
         part: "snippet",
         maxResults: 5,
-        key: process.env.REACT_APP_YOUTUBE_KEY,
+        key: keys.youtube_api_key,
       },
     });
 
