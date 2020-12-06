@@ -21,6 +21,12 @@ const initialState = {
         }
     }, 
 
+    info: {
+        trailersId: '', 
+        currentMovie: {}, 
+    },
+
+
     navSearchTerm: '', 
     searchTerm: '', 
     isOpen: false, 
@@ -108,6 +114,10 @@ export default (state = initialState, action) => {
                         title: '', 
                     }
                 }, 
+                info: {
+                    trailersId: '', 
+                    currentMovie: {}, 
+                }, 
                 navSearchTerm: '', 
                 searchTerm: '', 
                 
@@ -118,6 +128,18 @@ export default (state = initialState, action) => {
             return {
                 ...state, 
                 isLoading: action.payload, 
+            }
+        case "FETCH_TRAILER": 
+
+            return {
+                ...state, 
+                info: {
+                    trailersId: action.payload.trailersId, 
+                    currentMovie: action.payload.currentMovie, 
+                }, 
+                searchOpen: false, 
+
+
             }
         default: 
             return state; 

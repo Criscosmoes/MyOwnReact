@@ -141,7 +141,7 @@ const WatchTrailer = ({ trailers, cast, search, title, trending, topRated, youtu
         </div>
         <div className="rating">
           <div>
-            User Rating: 
+            Overview:  
             {currentVideo.length === 0 ? "" : " "+ currentVideo[0].vote_average}
           </div>
         </div>

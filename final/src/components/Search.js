@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { fetchTrailers } from "../actions";
+import { exampleTrailers } from "../actions";
 
 import { motion } from "framer-motion";
 
@@ -80,7 +80,7 @@ const StyledSearch = styled.div`
   }
 `;
 
-const Search = ({ movies, fetchTrailers, isLoading }) => {
+const Search = ({ movies, exampleTrailers, isLoading }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
   const renderedList = filteredList.map((cur) => {
@@ -94,7 +94,7 @@ const Search = ({ movies, fetchTrailers, isLoading }) => {
           <h2>{cur.title}</h2>
           <p className="overview">{cur.overview}</p>
           <Link className="link" to={`/movie/${cur.id}`}>
-            <button onClick={() => fetchTrailers(cur.id, cur)}>Watch Trailer</button>
+            <button onClick={() => exampleTrailers(cur.id, cur)}>Watch Trailer</button>
           </Link>
         </div>
       </div>
@@ -129,4 +129,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchTrailers })(Search);
+export default connect(mapStateToProps, { exampleTrailers })(Search);

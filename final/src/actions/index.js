@@ -1,6 +1,6 @@
 import moviesDB from "../apis/moviesDB";
 import youtube from "../apis/youtube";
-import { keys } from '../keys/keys';  
+import { keys } from "../keys/keys";
 
 export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   dispatch({ type: "CHANGE_LOADING", payload: true });
@@ -17,15 +17,18 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
     });
 
     setTimeout(function () {
-      dispatch({
-        type: "FETCH_MOVIES",
-        payload: {
-          name: name,
-          arr: response.data.results,
-          isLoading: false,
+      dispatch(
+        {
+          type: "FETCH_MOVIES",
+          payload: {
+            name: name,
+            arr: response.data.results,
+            isLoading: false,
+          },
         },
-      }, 1000);
-    })
+        1000
+      );
+    });
   } else if (query !== undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
@@ -68,9 +71,9 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
     });
 
     const cast = await moviesDB.get(`movie/${id}/credits`, {
-        params: {
-          api_key: KEY,
-        },
+      params: {
+        api_key: KEY,
+      },
     });
 
     if (response.data.results.length === 0) {
@@ -96,28 +99,21 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
           id: id,
         },
       });
-
+    } else {
+      dispatch({
+        type: "FETCH_TRAILERS",
+        payload: {
+          trailers: response.data.results,
+          cast: cast.data.cast,
+          youtubeTrailers: [],
+          title: title,
+          backgroundImage: obj.backdrop_path,
+          id: id,
+        },
+      });
     }
-    else {
-        dispatch({
-            type: "FETCH_TRAILERS",
-            payload: {
-              trailers: response.data.results,
-              cast: cast.data.cast,
-              youtubeTrailers: [],
-              title: title,
-              backgroundImage: obj.backdrop_path,
-              id: id,
-            },
-          });
-    }
-
-    
-
-
   } catch (error) {
-
-    console.log(error); 
+    console.log(error);
     const youtubeResponse = await youtube.get("search/", {
       params: {
         q: `${title} trailer`,
@@ -126,7 +122,6 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
         key: keys.youtube_api_key,
       },
     });
-
 
     dispatch({
       type: "FETCH_TRAILERS",
@@ -177,4 +172,77 @@ export const clearFields = () => {
   return {
     type: "CLEAR_FIELDS",
   };
+};
+
+
+export const exampleTrailers = (id, movie) => async (dispatch) => {
+  try {
+    // fectch trailers
+    const trailers = await moviesDB.get(`/movie/${id}/videos`, {
+      params: {
+        api_key: keys.movies_db_key,
+      },
+    });
+
+    //fetch cast
+    const cast = await moviesDB.get(`/movie/${id}/credits`, {
+      params: {
+        api_key: keys.movies_db_key,
+      },
+    });
+
+    if (trailers.data.results.length === 0) {
+      //make youtube call also
+      const youtubeResponse = await youtube.get("search/", {
+        params: {
+          q: `${movie.original_name} trailer`,
+          part: "snippet",
+          maxResults: 5,
+          key: keys.youtube_api_key,
+        },
+      });
+
+      dispatch({
+        type: "FETCH_TRAILER", 
+        payload: {
+          trailersId: youtubeResponse.data.items[0].id.videoId, 
+          currentMovie: movie, 
+        }
+      })
+
+    }
+
+
+    dispatch({
+      type: "FETCH_TRAILER", 
+      payload: {
+        trailersId: trailers.data.results[0].key, 
+        currentMovie: movie, 
+      }
+    })
+
+    console.log(trailers.data.results); 
+
+  } catch (e) {
+    //means that the movies db  call failed, so make call to youtube
+
+    const youtubeResponse = await youtube.get("search/", {
+      params: {
+        q: `${movie.original_name} trailer`,
+        part: "snippet",
+        maxResults: 5,
+        key: keys.youtube_api_key,
+      },
+    });
+
+    dispatch({
+      type: "FETCH_TRAILER", 
+      payload: {
+        trailersId: youtubeResponse.data.items[0].id.videoId, 
+        currentMovie: movie, 
+      }
+    })
+
+  }
+
 };

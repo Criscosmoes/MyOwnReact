@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import HomePage from './HomePage';
 import WatchTrailer from './WatchTrailer';
 import Search from './Search';
+import WatchTrailerv2 from './WatchTrailerv2'; 
 
 import { Switch, Route } from 'react-router-dom'; 
 
@@ -56,7 +57,7 @@ const App = ({movies, fetchMovies}) => {
 
                 <Route path="/movie/:id" exact>
                     <NavBar /> 
-                    <WatchTrailer /> 
+                    <WatchTrailerv2 /> 
                 </Route>
 
                 <Route path="/search/:search" exact>

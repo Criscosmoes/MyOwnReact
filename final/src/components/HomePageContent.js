@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { Link } from 'react-router-dom'; 
 
-import { flipCard, fetchTrailers } from "../actions";
+import { flipCard, fetchTrailers, exampleTrailers } from "../actions";
 import { connect } from "react-redux";
 
 const StyledHomePageContent = styled.div`
@@ -95,7 +95,7 @@ const StyledHomePageContent = styled.div`
   }
 `;
 
-const HomePageContent = ({ movies, title, flipCard, fetchTrailers }) => {
+const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
   const moviesList = filteredList.map((cur) => {
@@ -113,7 +113,7 @@ const HomePageContent = ({ movies, title, flipCard, fetchTrailers }) => {
                 Rating:{" "}
                 {`${cur.vote_average}  ${cur.vote_average > 7.5 ? "🔥" : ""}`}
               </h3>
-              <Link to={`/movie/${cur.id}`}><button onClick={() => fetchTrailers(cur.id, cur)}>Watch Trailer</button></Link>
+              <Link to={`/movie/${cur.id}`}><button onClick={() => exampleTrailers(cur.id, cur)}>Watch Trailer</button></Link>
             </div>
           </div>
           <div className="card__face card__face--back">
@@ -139,4 +139,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { flipCard, fetchTrailers })(HomePageContent);
+export default connect(mapStateToProps, { flipCard, fetchTrailers, exampleTrailers })(HomePageContent);
