@@ -73,7 +73,7 @@ const WatchTrailerv2 = ({ trailerId, currentMovie }) => {
         <StyledWatchTrailerv2>
             <div className="trailer-container" style={style}>
                 <h1>{title} Official Trailer</h1>
-                <iframe allowFullScreen src={`https://www.youtube.com/embed/${trailerId}`}/>
+                <iframe title={title} allowFullScreen src={`https://www.youtube.com/embed/${trailerId}`}/>
             </div>
             <div className="overview">
                 <h2>Overview: </h2>

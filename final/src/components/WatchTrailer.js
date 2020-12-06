@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import styled from "styled-components";
 
 import { connect } from "react-redux";
@@ -169,3 +169,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(WatchTrailer);
+ */

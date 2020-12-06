@@ -205,6 +205,7 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
         payload: {
           trailersId: youtubeResponse.data.items[0].id.videoId, 
           currentMovie: movie, 
+          cast: cast, 
         }
       })
 
