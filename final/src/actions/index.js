@@ -11,7 +11,7 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   if (query === undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
       },
     });
 
@@ -31,7 +31,7 @@ export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
   } else if (query !== undefined) {
     const response = await moviesDB.get(endpoint, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
         query: query,
       },
     });
@@ -64,13 +64,13 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
   try {
     const response = await moviesDB.get(`movie/${id}/videos`, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
       },
     });
 
     const cast = await moviesDB.get(`movie/${id}/credits`, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
       },
     });
 
@@ -82,7 +82,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
           q: `${title} trailer`,
           part: "snippet",
           maxResults: 5,
-          key: keys.youtube_api_key,
+          key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
         },
       });
 
@@ -117,7 +117,7 @@ export const fetchTrailers = (id, obj) => async (dispatch) => {
         q: `${title} trailer`,
         part: "snippet",
         maxResults: 5,
-        key: keys.youtube_api_key,
+        key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
       },
     });
 
@@ -178,14 +178,14 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
     // fectch trailers
     const trailers = await moviesDB.get(`/movie/${id}/videos`, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
       },
     });
 
     //fetch cast
     const cast = await moviesDB.get(`/movie/${id}/credits`, {
       params: {
-        api_key: keys.movies_db_key,
+        api_key: '2d241abde6516d29ca9254c83e3cfc34',
       },
     });
 
@@ -196,7 +196,7 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
           q: `${movie.original_name} trailer`,
           part: "snippet",
           maxResults: 5,
-          key: keys.youtube_api_key,
+          key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
         },
       });
 
@@ -230,7 +230,7 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
         q: `${movie.original_name} trailer`,
         part: "snippet",
         maxResults: 5,
-        key: keys.youtube_api_key,
+        key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
       },
     });
 
