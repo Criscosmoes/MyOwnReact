@@ -22,7 +22,7 @@ const App = ({movies, fetchMovies}) => {
 
        fetchMovies('top rated', 'movie/top_rated'); 
        fetchMovies('trending', 'trending/all/week'); 
-       fetchMovies('trendingToday', 'trending/movie/day')
+       fetchMovies('trendingToday', 'trending/all/day')
        fetchMovies('popular', 'movie/popular'); 
        fetchMovies('now_playing', 'movie/now_playing'); 
        fetchMovies('upcoming', 'movie/upcoming')
@@ -35,31 +35,31 @@ const App = ({movies, fetchMovies}) => {
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    <HomePage trending={movies.trending} topRated={movies.topRated} trendingToday={movies.trendingToday} />
+                    {/* <HomePage trending={movies.trending} topRated={movies.topRated} trendingToday={movies.trendingToday} /> */}
                 </Route>
 
-                <Route path="/popular" exact>
+                <Route path="/popular" >
                     <NavBar /> 
                     <Search movies={movies.popular} /> 
                 </Route>
 
-                <Route path="/now_playing" exact>
+                <Route path="/now_playing" >
                     <NavBar /> 
                     <Search movies={movies.now_playing} /> 
                     
                 </Route>
 
-                <Route path="/upcoming" exact>
+                <Route path="/upcoming" >
                     <NavBar /> 
                     <Search movies={movies.upcoming} />
                 </Route>
 
-                <Route path="/movie/:id" exact>
+                <Route path="/movie/:id">
                     <NavBar /> 
                     <WatchTrailerv2 /> 
                 </Route>
 
-                <Route path="/search/:search" exact>
+                <Route path="/search/:search">
                     <NavBar /> 
                     <Search movies={movies.search} /> 
                     

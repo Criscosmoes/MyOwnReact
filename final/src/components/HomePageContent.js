@@ -69,7 +69,7 @@ const StyledHomePageContent = styled.div`
 
   .title {
     text-align: center;
-    font-size: 1.2rem;  
+    font-size: 1.5rem;  
   }
 
   img {
@@ -93,6 +93,7 @@ const StyledHomePageContent = styled.div`
     overflow-x: auto;
     max-height: 100%;
   }
+
 `;
 
 const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
@@ -108,7 +109,7 @@ const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
               alt={cur.title}
             />
             <div className="info">
-              <h3 className="title">{cur.title}</h3>
+              <h3 className="title">{cur.title || cur.original_title || cur.name}</h3>
               <h3>
                 Rating:{" "}
                 {`${cur.vote_average}  ${cur.vote_average > 7.5 ? "🔥" : ""}`}

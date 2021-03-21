@@ -72,6 +72,38 @@ const StyledHomePageHeader = styled.div`
   }
 
 
+  @media (min-width: 1000px){
+
+
+    .header {
+      height: 50vh;
+      background-image: url(${"https://images.unsplash.com/photo-1576105629490-4b1b2de87916?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"}); 
+      background-position: 0% 40%;
+      background-size: cover; 
+    }
+
+    .info {
+      text-align: center; 
+    }
+
+    h1 {
+      font-size: 10rem; 
+    }
+
+    p {
+      font-size: 4.5rem; 
+    }
+
+    form {
+      width: 100%; 
+      height: 50px;
+    }
+
+    input {
+      border-radius: 25px;
+    }
+  }
+
 `;
 
 const HomePageHeader = ({ term, onInputChange, fetchMovies }) => {

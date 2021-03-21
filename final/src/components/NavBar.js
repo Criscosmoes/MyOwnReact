@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+
+
+import { motion } from "framer-motion"
 
 import { connect } from "react-redux";
 import { switchOpen, switchSearch, onInputChange, fetchMovies, clearFields } from "../actions";
@@ -10,107 +13,88 @@ import { switchOpen, switchSearch, onInputChange, fetchMovies, clearFields } fro
 import { Link } from "react-router-dom";
 
 const StyledNavBar = styled.div`
+
   & {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    border: none;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 7vh;
+    background: black;
+    color: lightgray;
   }
 
-  /* navigation top */
-
-  .navigation {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #1f2833;
-    color: #66fcf1;
-  }
-
-  .navigation > * {
-    margin: 3%;
-  }
-
-  .bars {
-    margin: 3%;
-    font-size: 2.5rem;
-    border: none;
-  }
-
-  .search {
-    font-size: 2.5rem;
-    border: none;
-  }
-
-  .title {
-    color: #c5c6c7;
-  }
-
-  /* dropdown menu */
-
-  .menu {
-    background: lightgray;
-    width: 52%;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    transition: 500ms;
-    height: 100%;
-  }
-
-  .active {
-    left: 0;
-    z-index: 1;
-    transition: 500ms;
+  h2 {
+    color: #ED9D3A
   }
 
   .links {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    font-size: 2rem;
+    display: flex; 
+    justify-content: space-evenly; 
+    align-items: center; 
+    width: 60%; 
+    color: lightgray; 
+    font-size: 2rem; 
   }
 
-  .link {
-    margin: 15%;
-    text-align: center; 
+  .search {
+    display: flex; 
+    justify-content: flex-end; 
+    margin-right: 5%; 
+    width: 20%; 
+    transition: all ease-in .3s; 
   }
 
-  .click-search {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    transition: 500ms;
-    color: black;
-  }
-
-  .open {
-    display: none;
-    font-size: 1.5rem;
-    transition: 500ms;
-  }
-
-  input {
-    width: 90%;
-    margin: 1%;
-    border: none;
-    outline: none;
-  }
-
-  .hidden-btn {
+  .icon {
+    font-size: 4rem;
+    transition: all ease-out .2s; 
     border: none; 
   }
 
-  form {
-    width: 100%; 
+  .icon:hover {
+    color: #ED9D3A; 
+    transition: ease-in .2s;
+    cursor: pointer;
   }
 
-`;
+
+  .all-links {
+    color: lightgray; 
+    font-size: 2rem;
+    transition: ease-out .2s; 
+    cursor: pointer;
+  }
+
+  .all-links:hover {
+    color: #ED9D3A; 
+    transition: ease-in .2s; 
+  }
+
+  .hidden {
+    display: flex; 
+    justify-content: space-evenly; 
+    align-items: center; 
+    transition: all .2s ease-out;
+    width: 100%;
+
+  }
+
+  .hidden > * {
+    margin: 1%
+  }
+
+  input {
+    width: 100%; 
+    height: 80%; 
+    border-radius: 25px; 
+    outline: none;
+    font-size: 2rem;
+    text-align: center; 
+  }
+
+
+`
 
 const NavBar = ({
-  isOpen,
   switchOpen,
   searchOpen,
   switchSearch,
@@ -121,17 +105,70 @@ const NavBar = ({
 }) => {
 
 
+  const [isOpen, setisOpen] = useState(true); 
+
+
+
+  
+
+
 
   return (
     <StyledNavBar>
-      <div className="navigation">
+      <div className="links">
+        <h2>MI</h2>
+        <Link className="all-links">Popular</Link>
+        <Link className="all-links">Now Playing</Link>
+        <Link className="all-links"> Upcoming</Link>
+        <Link className="all-links">Top Rated</Link>
+
+      </div>
+
+      <div className="search">
+        {isOpen ? <BiSearchAlt className="icon" onClick={() => setisOpen(!isOpen)}/> : <div className="hidden"><input type="text" /> <BiSearchAlt className="icon" /> <AiOutlineClose className="icon" onClick={() => setisOpen(!isOpen)} /> </div>}
+      </div>
+    </StyledNavBar>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isOpen: state.isOpen,
+    searchOpen: state.searchOpen,
+    term: state.navSearchTerm,
+  };
+};
+
+export default connect(mapStateToProps, {
+  switchOpen,
+  switchSearch,
+  onInputChange,
+  fetchMovies, 
+  clearFields
+})(NavBar);
+
+
+
+/*
+
+ <div className="navigation">
         <nav>
           <FaBars onClick={switchOpen} className="bars" />
+          <Link className="title" to="/">
+            <h1 onClick={clearFields}>Movies Info</h1>
+          </Link>
+          
         </nav>
 
-        <Link className="title" to="/">
-          <h1 onClick={clearFields}>Movies Info</h1>
-        </Link>
+        <div className="blank"></div>
+
+        <div className="other-links">
+          <h4>Popular Movies</h4>
+          <h4>Now Playing</h4>
+          <h4>Upcoming</h4>
+        </div>
+
+        
 
         {searchOpen ? (
           <AiOutlineClose className="search" onClick={switchSearch} />
@@ -170,22 +207,12 @@ const NavBar = ({
           <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} className="hidden-btn" type="submit" /></Link>
         </form>
       </div>
-    </StyledNavBar>
-  );
-};
 
-const mapStateToProps = (state) => {
-  return {
-    isOpen: state.isOpen,
-    searchOpen: state.searchOpen,
-    term: state.navSearchTerm,
-  };
-};
 
-export default connect(mapStateToProps, {
-  switchOpen,
-  switchSearch,
-  onInputChange,
-  fetchMovies, 
-  clearFields
-})(NavBar);
+
+
+
+
+*/
+
+

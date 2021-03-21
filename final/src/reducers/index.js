@@ -12,7 +12,6 @@ const initialState = {
 
     information: {
         trailers: [], 
-        cast: [], 
         youtubeTrailersId: '', 
         id: '', 
         movie: {
@@ -24,6 +23,8 @@ const initialState = {
     info: {
         trailersId: '', 
         currentMovie: {}, 
+        cast: [], 
+        providers: {}, 
     },
 
 
@@ -117,6 +118,7 @@ export default (state = initialState, action) => {
                 info: {
                     trailersId: '', 
                     currentMovie: {}, 
+                    cast: [], 
                 }, 
                 navSearchTerm: '', 
                 searchTerm: '', 
@@ -136,6 +138,8 @@ export default (state = initialState, action) => {
                 info: {
                     trailersId: action.payload.trailersId, 
                     currentMovie: action.payload.currentMovie, 
+                    cast: action.payload.cast, 
+                    providers: action.payload.providers, 
                 }, 
                 searchOpen: false, 
 

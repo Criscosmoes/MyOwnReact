@@ -1,6 +1,5 @@
 import moviesDB from "../apis/moviesDB";
 import youtube from "../apis/youtube";
-import { keys } from '../keys'; 
 
 
 export const fetchMovies = (name, endpoint, query) => async (dispatch) => {
@@ -189,23 +188,32 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
       },
     });
 
+    //fetch watch provider
+    const providers = await moviesDB.get(`/movie/${id}/watch/providers`, {
+      params: {
+        api_key: '2d241abde6516d29ca9254c83e3cfc34', 
+      }
+    })
+
     if (trailers.data.results.length === 0) {
       //make youtube call also
       const youtubeResponse = await youtube.get("search/", {
         params: {
-          q: `${movie.original_name} trailer`,
+          q: `${movie.original_name || movie.original_title || movie.title} trailer`,
           part: "snippet",
           maxResults: 5,
           key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
         },
       });
 
+
       dispatch({
         type: "FETCH_TRAILER", 
         payload: {
           trailersId: youtubeResponse.data.items[0].id.videoId, 
           currentMovie: movie, 
-          cast: cast, 
+          cast: cast.data.cast, 
+          providers: providers.data.results, 
         }
       })
 
@@ -217,17 +225,17 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
       payload: {
         trailersId: trailers.data.results[0].key, 
         currentMovie: movie, 
+        cast: cast.data.cast,
+        providers: providers.data.results
       }
     })
-
-    console.log(trailers.data.results); 
 
   } catch (e) {
     //means that the movies db  call failed, so make call to youtube
 
     const youtubeResponse = await youtube.get("search/", {
       params: {
-        q: `${movie.original_name} trailer`,
+        q: `${movie.original_name || movie.original_title || movie.title} trailer`,
         part: "snippet",
         maxResults: 5,
         key: 'AIzaSyB_X4ltuzH_OIU2QqHv3IsOXDbr-FWn8Do',
