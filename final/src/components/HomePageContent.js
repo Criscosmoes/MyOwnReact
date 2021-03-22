@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 
 import styled from "styled-components";
 import Aos from 'aos'; 
+import { motion } from 'framer-motion'; 
 
 
 import { Link } from 'react-router-dom'; 
@@ -39,7 +40,6 @@ const StyledHomePageContent = styled.div`
   h2 {
     font-size: 1.7rem; 
     margin: 3% 0%;
-    text-align: center; 
   }
 
   .movie {
@@ -124,7 +124,7 @@ const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
   const moviesList = filteredList.map((cur) => {
 
     return (
-      <div className="movie">
+      <div className="movie" onClick={() => exampleTrailers(cur.id, cur)}>
         
         <Link  to={`/movie/${cur.id}`}><img src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`} /></Link>
         <h2>{cur.title || cur.original_title || cur.name}</h2>
@@ -135,13 +135,13 @@ const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
 
   return (
     <StyledHomePageContent>
-      <div className="big-container">
+      <motion.div className="big-container" exit={{ opacity: 1}} animate={{opacity: 1}} initial={{ opacity: 0}} duration={4000} >
         <h1 data-aos="flip-up" data-aos-duration={2500}>{title}</h1>
 
         <div className="container">{moviesList}</div>
 
         <hr></hr>
-      </div>
+      </motion.div>
     </StyledHomePageContent>
   );
 };

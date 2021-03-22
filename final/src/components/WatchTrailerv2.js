@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
+import { FaPlay } from 'react-icons/fa'; 
+
 const StyledWatchTrailerv2 = styled.div`
-  * {
+/*   * {
     box-sizing: border-box;
   }
 
@@ -148,7 +150,142 @@ const StyledWatchTrailerv2 = styled.div`
     flex-direction: column;
     width: 15rem;
     height: 15rem;
+  } */
+
+  & {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
   }
+
+  .trailer-container {
+    height: 650px; 
+    background-size: cover;
+  }
+
+  .transparent {
+    background: gray; 
+    height: 650px;
+    width: 100%;
+    background: rgba(0,0,0, 0.9); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+
+  .movie-image {
+    display: flex; 
+    justify-content: flex-end;
+  }
+
+  .information {
+    width: 60%;
+    margin: 2%; 
+    color: white; 
+    height: 600px; 
+  }
+
+  .information > * {
+    margin: 2%
+  }
+
+  h1 {
+    font-size: 5rem; 
+  }
+
+  p {
+    font-size: 2rem; 
+    line-height: 1.5;
+    letter-spacing: .2rem; 
+  }
+
+  span {
+    font-size: 3.5rem; 
+  }
+
+  img {
+    width: 80%; 
+  }
+
+  h4 {
+    font-size: 3rem; 
+  }
+
+  .icon {
+    border: none; 
+    outline: none; 
+    font-size: 2rem; 
+  }
+
+  .to-trailer {
+    width: 21%
+  }
+
+  .to-trailer:hover {
+    cursor: pointer;
+    color: orange; 
+    transition: ease-in .4s; 
+  }
+  
+  .green {
+    color: green; 
+  }
+
+  //cast section
+
+
+  .cast-container {
+    display: flex;
+    overflow-x: auto;  
+    margin: 2%; 
+    color: white; 
+  }
+
+  .cast-information {
+    width: 100%
+  }
+
+  .cast-information > * {
+    margin: 2%
+  }
+
+  .cast {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    min-height: 300px; 
+    min-width: 200px;
+    border: 4px solid gray;
+    -moz-box-shadow: 5px 5px 40px black;
+    -webkit-box-shadow: 5px 5px 40px black;
+    box-shadow: 10px 10px 30px black;
+    margin: .5%
+  }
+
+  .cast > * {
+    margin: 2%
+  }
+
+  h3 {
+    text-align: center; 
+    color: white; 
+    font-size: 5rem; 
+  }
+
+
+  div::-webkit-scrollbar {
+    width: .5rem;
+ 
+  }
+
+  div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: orange;
+  
+  }
+
 `;
 
 const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
@@ -179,37 +316,16 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
             src={`https://image.tmdb.org/t/p/original${cur.profile_path}`}
             alt={cur.name}
           />
-          <div className="name">
-            <h2>{cur.name}</h2>
-            <h2>{cur.character}</h2>
-          </div>
+          
+          <h2>{cur.name}</h2>
+          <h2>{cur.character}</h2>
+          
         </div>
       );
     });
   }
 
-  /*   if (providers !== undefined) {
-    if (providers.US !== undefined) {
-      if (providers.US.flatrate !== undefined) {
-        providerImages = providers.US.flatrate;
-
-        renderedProviderImages = providerImages.map((cur) => {
-          return (
-            <div className="providers">
-              <div className="provider">
-                <img
-                  className="provider-image"
-                  src={`https://image.tmdb.org/t/p/original${cur.logo_path}`}
-                  alt={cur.provider_name}
-                />
-                <h2 className="provider-name">{cur.provider_name}</h2>
-              </div>
-            </div>
-          );
-        });
-      }
-    }
-  } */
+  
 
   if (providers && providers.US && providers.US.flatrate) {
     providerImages = providers.US.flatrate;
@@ -219,11 +335,14 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
       return (
         <div className="providers">
           <div className="provider">
-            <img
+            {/* <img
               className="provider-image"
               src={`https://image.tmdb.org/t/p/original${cur.logo_path}`}
               alt={cur.provider_name}
-            />
+            /> */}
+            <div className="transparent">
+
+            </div>
             <h2 className="provider-name">{cur.provider_name}</h2>
           </div>
         </div>
@@ -231,46 +350,35 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
     });
   }
 
+  console.log(currentMovie);
+  console.log(cast) 
+
   return (
     <StyledWatchTrailerv2>
-      <div className="title">
-        <h1>
-          {title} Official Trailer {releaseDate}
-          {type}{" "}
-        </h1>
-      </div>
       <div className="trailer-container" style={style}>
-        <iframe
+        {/* <iframe
           title={title}
           allowFullScreen
           src={`https://www.youtube.com/embed/${trailerId}`}
-        />
-      </div>
-      <div className="overview">
-        <h3>Overview:</h3>
-        <p>{currentMovie.overview}</p>
-      </div>
-      <h3>Cast: </h3>
-      <div className="cast-container">
-        {cast === undefined ? (
-          <div className="failed">
-            <h2>No cast available! Try again later.</h2>
-          </div>
-        ) : (
-          renderedCast
-        )}
-      </div>
-      {providers  && providers.US && providers.US.flatrate ? (
-        <div>
-          {" "}
-          <h3>Available On: </h3>
-          <div className="provider-container">
-            {renderedProviderImages ? renderedProviderImages : ""}
-          </div>
+        /> */}
+        <div className="transparent">
+            <div className="movie-image">
+             <img src={`https://image.tmdb.org/t/p/w500/${currentMovie.poster_path}`} />
+            </div>
+            <div className="information">
+                <h1>{currentMovie.name || currentMovie.original_name || currentMovie.title} {currentMovie.media_type ? `(${currentMovie.media_type.toUpperCase()})`: ""}</h1>
+                <p><span>Description</span><br></br> {currentMovie.overview}</p>
+                <h4>Rating: <span className={`rating ${currentMovie.vote_average > 7.9 ? "green" : ""}`}>{currentMovie.vote_average}</span> / 10</h4>
+                <h4>Date Released: {currentMovie.release_date} </h4>
+                <h4 className="to-trailer"><FaPlay className="icon" /> Check Trailer</h4>
+            </div>
         </div>
-      ) : (
-        ""
-      )}
+      </div>
+      {cast ? 
+      <div className="cast-information">
+        <h3>Cast</h3>
+        <div className="cast-container">{renderedCast}</div>
+      </div> : ""}
     </StyledWatchTrailerv2>
   );
 };
@@ -325,3 +433,32 @@ export default connect(mapStateToProps)(WatchTrailerv2);
   console.log(be) */
 
 // continue expanding on providers ?
+
+
+
+
+{/* <div className="overview">
+        <h3>Overview:</h3>
+        <p>{currentMovie.overview}</p>
+      </div>
+      <h3>Cast: </h3>
+      <div className="cast-container">
+        {cast === undefined ? (
+          <div className="failed">
+            <h2>No cast available! Try again later.</h2>
+          </div>
+        ) : (
+          renderedCast
+        )}
+      </div>
+      {providers  && providers.US && providers.US.flatrate ? (
+        <div>
+          {" "}
+          <h3>Available On: </h3>
+          <div className="provider-container">
+            {renderedProviderImages ? renderedProviderImages : ""}
+          </div>
+        </div>
+      ) : (
+        ""
+      )} */}
