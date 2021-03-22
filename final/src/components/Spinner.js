@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const StyledSpinner = styled.div`
   & {
-    height: 40vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@ const StyledSpinner = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 20%;
+    width: 30%;
   }
 
   .loading-circle {

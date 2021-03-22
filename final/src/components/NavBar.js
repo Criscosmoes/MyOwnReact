@@ -22,7 +22,7 @@ const StyledNavBar = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 7vh;
+    height: 65px;
     color: lightgray;
     border-bottom: .5px solid gray; 
   }
@@ -102,7 +102,6 @@ const StyledNavBar = styled.div`
     border-radius: 25px;
     outline: none;
     font-size: 2rem;
-    text-align: center;
   }
 
   button {
@@ -127,12 +126,11 @@ const NavBar = ({
   return (
     <StyledNavBar>
       
-      <div className="title"><h2><span>M</span>ovies Info</h2></div>
+      <div className="title"><Link to="/"><h2><span>M</span>ovies Info</h2></Link></div>
       <div className="links">
-        <Link className="all-links">Popular</Link>
-        <Link className="all-links">Now Playing</Link>
-        <Link className="all-links"> Upcoming</Link>
-        <Link className="all-links">Top Rated</Link>
+        <Link className="all-links" onClick={switchOpen} to="/popular">Popular</Link>
+        <Link className="all-links" onClick={switchOpen} to="/now_playing">Now Playing</Link>
+        <Link className="all-links" onClick={switchOpen} to="/upcoming"> Upcoming</Link>
       </div>
 
       <div className="search">
@@ -146,7 +144,7 @@ const NavBar = ({
               onChange={onInputChange}
               value={term}
               type="text"
-              placeholder="Search..."
+              placeholder="Search movies..."
               />
             <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
             </form>

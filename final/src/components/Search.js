@@ -194,13 +194,6 @@ const Search = ({ movies, exampleTrailers, isLoading }) => {
             <Link to={`/movie/${cur.id}`}><h3 onClick={() => exampleTrailers(cur.id, cur)} className="to-trailer"><FaPlay className="icon" /> Check Info</h3></Link>
             <hr></hr>
         </div>
-        {/* <div className="info">
-          <h2>{cur.title}</h2>
-          <p className="overview">{cur.overview}</p>
-          <Link className="link" to={`/movie/${cur.id}`}>
-            <button onClick={() => exampleTrailers(cur.id, cur)}>Watch Trailer</button>
-          </Link>
-        </div> */}
       </div>
     );
   });
