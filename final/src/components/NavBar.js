@@ -27,9 +27,6 @@ const StyledNavBar = styled.div`
     border-bottom: .5px solid gray; 
   }
 
-
-
-
   h2 {
     color: #ed9d3a;
     font-size: 2rem; 
@@ -87,6 +84,16 @@ const StyledNavBar = styled.div`
     align-items: center;
   }
 
+  form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  form > * {
+    margin: 1%
+  }
+
   .hidden > * {
     margin: 1%;
   }
@@ -96,6 +103,13 @@ const StyledNavBar = styled.div`
     outline: none;
     font-size: 2rem;
     text-align: center;
+  }
+
+  button {
+    background: transparent; 
+    color: gray; 
+    border: none; 
+    outline: none; 
   }
 `;
 
@@ -126,7 +140,16 @@ const NavBar = ({
           <BiSearchAlt className="icon" onClick={() => setisOpen(!isOpen)} />
         ) : (
           <div className="hidden">
-            <input type="text" /> <BiSearchAlt className="icon" />{" "}
+            <form>
+              <input
+              name="navSearchTerm"
+              onChange={onInputChange}
+              value={term}
+              type="text"
+              placeholder="Search..."
+              />
+            <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
+            </form>
             <AiOutlineClose
               className="icon"
               onClick={() => setisOpen(!isOpen)}

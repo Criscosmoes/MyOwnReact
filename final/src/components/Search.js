@@ -10,8 +10,11 @@ import { motion } from "framer-motion";
 
 import Spinner from './Spinner'; 
 
+
+import { FaPlay } from 'react-icons/fa'; 
+
 const StyledSearch = styled.div`
-  h1 {
+/*   h1 {
     margin: 1%;
   }
 
@@ -77,7 +80,93 @@ const StyledSearch = styled.div`
 
   .link {
     width: 70%; 
+  } */
+
+
+  .movie {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 1%
   }
+
+  .movie > * {
+    margin: 1%
+  }
+
+  .image {
+    display: flex; 
+    justify-content: flex-end; 
+    width: 40%; 
+  }
+
+  img {
+    width: 400px;
+    height: 600px; 
+    transition: ease-out .2s; 
+    margin: 1%
+  }
+
+  h2 {
+
+    font-size: 6rem; 
+  }
+
+  h3 {
+    font-size: 3rem; 
+    color: white; 
+    transition: ease-out .3s; 
+  }
+
+  h4 {
+    font-size: 3rem; 
+  }
+
+  h3:hover {
+    color: orange;
+    transition: ease-in .3s; 
+  }
+
+
+  p {
+    width: 80%; 
+    font-size: 2rem; 
+  }
+
+  span {
+    font-size: 4rem; 
+  }
+
+  .information {
+    display: flex;
+    align-items: flex-start; 
+    flex-direction: column; 
+    width: 60%; 
+    height: 585px; 
+    color: white; 
+  }
+
+  .information > * {
+    margin: 1.5%
+  }
+
+  .icon {
+    border: none; 
+    outline: none; 
+    font-size: 2rem; 
+  }
+
+  img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    border: 5px solid orange; 
+  }
+
+
+  hr {
+    width: 80%
+  }
+
 `;
 
 const Search = ({ movies, exampleTrailers, isLoading }) => {
@@ -86,17 +175,32 @@ const Search = ({ movies, exampleTrailers, isLoading }) => {
   const renderedList = filteredList.map((cur) => {
     return (
       <div key={cur.id} className="movie">
-        <img
-          alt={cur.title}
-          src={`https://image.tmdb.org/t/p/original/${cur.poster_path}`}
-        />
-        <div className="info">
+        <div className="image">
+          <Link to={`/movie/${cur.id}`}>
+          <img
+            alt={cur.title}
+            src={`https://image.tmdb.org/t/p/original/${cur.poster_path}`}
+            onClick={() => exampleTrailers(cur.id, cur)}
+          />
+          </Link>
+        </div>
+
+        <div className="information">
+            <h2>{cur.title || cur.original_name}</h2>
+            <p><span>Description</span> <br></br> <br></br>{cur.overview}</p>
+            <h4>Rating: {cur.vote_average}</h4>
+            <h4>Date Released: {cur.release_date || cur.first_air_date}</h4>
+            
+            <Link to={`/movie/${cur.id}`}><h3 onClick={() => exampleTrailers(cur.id, cur)} className="to-trailer"><FaPlay className="icon" /> Check Info</h3></Link>
+            <hr></hr>
+        </div>
+        {/* <div className="info">
           <h2>{cur.title}</h2>
           <p className="overview">{cur.overview}</p>
           <Link className="link" to={`/movie/${cur.id}`}>
             <button onClick={() => exampleTrailers(cur.id, cur)}>Watch Trailer</button>
           </Link>
-        </div>
+        </div> */}
       </div>
     );
   });
@@ -115,7 +219,6 @@ const Search = ({ movies, exampleTrailers, isLoading }) => {
           transition={{ duration: 1, delay: .5 }}
           className="movie-container"
         >
-          <h1>Results: {renderedList.length}</h1>
           {renderedList}
         </motion.div>
       )}
