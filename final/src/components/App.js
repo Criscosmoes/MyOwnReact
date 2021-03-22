@@ -35,7 +35,7 @@ const App = ({movies, fetchMovies}) => {
             <Switch>
                 <Route path="/" exact>
                     <NavBar /> 
-                    {/* <HomePage trending={movies.trending} topRated={movies.topRated} trendingToday={movies.trendingToday} /> */}
+                    {<HomePage trending={movies.trending} topRated={movies.topRated} trendingToday={movies.trendingToday} />}
                 </Route>
 
                 <Route path="/popular" >

@@ -3,8 +3,10 @@ v2.0 | 20110126
 License: none (public domain)
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -21,7 +23,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
     padding: 0;
-    /* border: 0; */
+    border: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
@@ -58,12 +60,13 @@ a {
 }
 * {
     box-sizing: border-box;
-    border: .2px solid gray; 
+    border: .2px solid gray;
 }
 html {
     font-size: 62.5%;
 }
 body {
     font-size: 1.6rem;
-    font-family: 'Space Grotesk', sans-serif;
+    background:	#181818;
+    font-family: 'montserrat', sans-serif
 }

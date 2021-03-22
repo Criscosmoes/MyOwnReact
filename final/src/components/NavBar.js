@@ -1,98 +1,103 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 import { connect } from "react-redux";
-import { switchOpen, switchSearch, onInputChange, fetchMovies, clearFields } from "../actions";
+import {
+  switchOpen,
+  switchSearch,
+  onInputChange,
+  fetchMovies,
+  clearFields,
+} from "../actions";
 
 import { Link } from "react-router-dom";
 
 const StyledNavBar = styled.div`
-
   & {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 7vh;
-    background: black;
     color: lightgray;
+    border-bottom: .5px solid gray; 
   }
+
+
+
 
   h2 {
-    color: #ED9D3A
-  }
-
-  .links {
-    display: flex; 
-    justify-content: space-evenly; 
-    align-items: center; 
-    width: 60%; 
-    color: lightgray; 
+    color: #ed9d3a;
     font-size: 2rem; 
   }
 
+  span {
+    font-size: 3rem; 
+  }
+
+  .title {
+    width: 15%
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: lightgray;
+    font-size: 2rem;
+    width: 40%
+  }
+
   .search {
-    display: flex; 
-    justify-content: flex-end; 
-    margin-right: 5%; 
-    width: 20%; 
-    transition: all ease-in .3s; 
+    display: flex;
+    justify-content: flex-end;
+    width: 17.5%
   }
 
   .icon {
     font-size: 4rem;
-    transition: all ease-out .2s; 
-    border: none; 
+
+    border: none;
   }
 
   .icon:hover {
-    color: #ED9D3A; 
-    transition: ease-in .2s;
+    color: #ed9d3a;
+    
     cursor: pointer;
   }
 
-
   .all-links {
-    color: lightgray; 
+    color: lightgray;
     font-size: 2rem;
-    transition: ease-out .2s; 
     cursor: pointer;
   }
 
   .all-links:hover {
-    color: #ED9D3A; 
-    transition: ease-in .2s; 
+    color: #ed9d3a;
+    
   }
 
   .hidden {
-    display: flex; 
-    justify-content: space-evenly; 
-    align-items: center; 
-    transition: all .2s ease-out;
-    width: 100%;
-
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   .hidden > * {
-    margin: 1%
+    margin: 1%;
   }
 
   input {
-    width: 100%; 
-    height: 80%; 
-    border-radius: 25px; 
+    border-radius: 25px;
     outline: none;
     font-size: 2rem;
-    text-align: center; 
+    text-align: center;
   }
-
-
-`
+`;
 
 const NavBar = ({
   switchOpen,
@@ -100,32 +105,34 @@ const NavBar = ({
   switchSearch,
   onInputChange,
   term,
-  fetchMovies, 
-  clearFields
+  fetchMovies,
+  clearFields,
 }) => {
-
-
-  const [isOpen, setisOpen] = useState(true); 
-
-
-
-  
-
-
+  const [isOpen, setisOpen] = useState(true);
 
   return (
     <StyledNavBar>
+      
+      <div className="title"><h2><span>M</span>ovies Info</h2></div>
       <div className="links">
-        <h2>MI</h2>
         <Link className="all-links">Popular</Link>
         <Link className="all-links">Now Playing</Link>
         <Link className="all-links"> Upcoming</Link>
         <Link className="all-links">Top Rated</Link>
-
       </div>
 
       <div className="search">
-        {isOpen ? <BiSearchAlt className="icon" onClick={() => setisOpen(!isOpen)}/> : <div className="hidden"><input type="text" /> <BiSearchAlt className="icon" /> <AiOutlineClose className="icon" onClick={() => setisOpen(!isOpen)} /> </div>}
+        {isOpen ? (
+          <BiSearchAlt className="icon" onClick={() => setisOpen(!isOpen)} />
+        ) : (
+          <div className="hidden">
+            <input type="text" /> <BiSearchAlt className="icon" />{" "}
+            <AiOutlineClose
+              className="icon"
+              onClick={() => setisOpen(!isOpen)}
+            />{" "}
+          </div>
+        )}
       </div>
     </StyledNavBar>
   );
@@ -143,11 +150,9 @@ export default connect(mapStateToProps, {
   switchOpen,
   switchSearch,
   onInputChange,
-  fetchMovies, 
-  clearFields
+  fetchMovies,
+  clearFields,
 })(NavBar);
-
-
 
 /*
 
@@ -214,5 +219,3 @@ export default connect(mapStateToProps, {
 
 
 */
-
-
