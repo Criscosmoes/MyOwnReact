@@ -286,6 +286,35 @@ const StyledWatchTrailerv2 = styled.div`
   
   }
 
+  // trailer section 
+
+  .teaser-container {
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 900px; 
+    width: 100%
+  }
+
+  .teaser-container > *  {
+    margin: 1.5%
+  }
+
+
+  iframe {
+    border: 10px solid gray;
+    -moz-box-shadow: 5px 5px 40px black;
+    -webkit-box-shadow: 5px 5px 40px black;
+    box-shadow: 10px 10px 30px black;
+    height: 800px; 
+    width: 70%
+  }
+
+  .text {
+    font-size: 5rem; 
+    color: orange; 
+  }
+
 `;
 
 const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
@@ -352,6 +381,7 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
 
   console.log(currentMovie);
   console.log(cast) 
+  console.log(trailerId); 
 
   return (
     <StyledWatchTrailerv2>
@@ -376,9 +406,19 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
       </div>
       {cast ? 
       <div className="cast-information">
-        <h3>Cast</h3>
+        <h3>Top Cast</h3>
         <div className="cast-container">{renderedCast}</div>
       </div> : ""}
+      <div className="teaser-container">
+        <h3>{currentMovie.name || currentMovie.original_name || currentMovie.title} <span className="text">Trailer</span> </h3>
+        <iframe
+          title={title}
+          allowFullScreen
+          src={`https://www.youtube.com/embed/${trailerId}`}
+          className="trailer"
+        />
+      </div>
+
     </StyledWatchTrailerv2>
   );
 };
