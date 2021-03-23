@@ -186,12 +186,10 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
     backgroundImage: `url(${`https://image.tmdb.org/t/p/original${currentMovie.backdrop_path}`})`,
   };
 
-  const title =
-    currentMovie.original_name |
-    currentMovie.original_title |
-    currentMovie.original_name;
-
-  let renderedCast, filteredCast;
+ 
+ const title = currentMovie.original_name || currentMovie.original_title || currentMovie.title; 
+ 
+ let renderedCast, filteredCast; 
 
   if (cast) {
     // some cast do not have pics of themselves, so we filter these out
@@ -204,7 +202,7 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
           <img
             className="actor"
             src={`https://image.tmdb.org/t/p/original${cur.profile_path}`}
-            alt={cur.name}
+            alt={cur.title || cur.original_title || cur.name}
           />
 
           <h2 className="name">{cur.name}</h2>
@@ -213,8 +211,6 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
       );
     });
   }
-
-  console.log(currentMovie); 
 
   return (
     <StyledWatchTrailerv2>
@@ -230,6 +226,7 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
           <div className="movie-image">
             <img className="main-image"
               src={`https://image.tmdb.org/t/p/w500/${currentMovie.poster_path}`}
+              alt="example"
             />
           </div>
           <div className="information">

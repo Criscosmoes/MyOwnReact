@@ -1,5 +1,4 @@
 import React from 'react'
-import HomePageHeader from './HomePageHeader';
 import HomePageContent from './HomePageContent';
 
 const HomePage = ({ trending, topRated, trendingToday }) => {

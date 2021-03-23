@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaBars } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-import { motion } from "framer-motion";
+
 
 import { connect } from "react-redux";
 import {
@@ -174,69 +173,3 @@ export default connect(mapStateToProps, {
   fetchMovies,
   clearFields,
 })(NavBar);
-
-/*
-
- <div className="navigation">
-        <nav>
-          <FaBars onClick={switchOpen} className="bars" />
-          <Link className="title" to="/">
-            <h1 onClick={clearFields}>Movies Info</h1>
-          </Link>
-          
-        </nav>
-
-        <div className="blank"></div>
-
-        <div className="other-links">
-          <h4>Popular Movies</h4>
-          <h4>Now Playing</h4>
-          <h4>Upcoming</h4>
-        </div>
-
-        
-
-        {searchOpen ? (
-          <AiOutlineClose className="search" onClick={switchSearch} />
-        ) : (
-          <BiSearchAlt onClick={switchSearch} className="search" />
-        )}
-      </div>
-      <div className={`menu ${isOpen ? "active" : ""}`}>
-        <div className="links">
-          <AiOutlineClose className="search" onClick={switchOpen} />
-
-          <Link className="link" onClick={switchOpen} to="/popular">
-            Popular Movies
-          </Link>
-
-          <Link className="link" onClick={switchOpen} to="/now_playing">
-            Now Playing
-          </Link>
-
-          <Link className="link" onClick={switchOpen} to="/upcoming">
-            Upcoming Movies
-          </Link>
-        </div>
-      </div>
-      <div className={`click-search ${searchOpen ? "" : "open"}`}>
-        <BiSearchAlt className="search" />
-
-        <form>
-          <input
-            name="navSearchTerm"
-            onChange={onInputChange}
-            value={term}
-            type="text"
-            placeholder="Search..."
-          />
-          <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} className="hidden-btn" type="submit" /></Link>
-        </form>
-      </div>
-
-
-
-
-
-
-*/

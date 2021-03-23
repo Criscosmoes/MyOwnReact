@@ -14,73 +14,6 @@ import Spinner from './Spinner';
 import { FaPlay } from 'react-icons/fa'; 
 
 const StyledSearch = styled.div`
-/*   h1 {
-    margin: 1%;
-  }
-
-  .movie-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  img {
-    width: 150px;
-    height: 210px;
-  }
-
-  .movie {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1%;
-    background: #1f2833; 
-    color: white; 
-    border: 4px solid white;
-    -moz-box-shadow: 5px 5px 40px black;
-    -webkit-box-shadow: 5px 5px 40px black;
-    box-shadow: 10px 10px 30px black;
-  }
-
-  p {
-    text-align: center;
-    overflow-y: auto;
-    height: 16vh;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .info {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    height: 100%;
-    margin: 1%;
-  }
-
-  .info > * {
-    margin: 1%;
-  }
-
-  button {
-    background: #45a29e; 
-    color: white; 
-    padding: 2%; 
-    width: 100%; 
-  }
-
-  .overview {
-    margin: 5%
-  }
-
-  .link {
-    width: 70%; 
-  } */
 
 
   .movie {
@@ -172,7 +105,10 @@ const StyledSearch = styled.div`
 const Search = ({ movies, exampleTrailers, isLoading }) => {
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
 
-  const renderedList = filteredList.map((cur) => {
+  // sorts a list from greatest popularity to smallest
+  const sortedList = filteredList.sort(function(a,b){return b.popularity - a.popularity}); 
+
+  const renderedList = sortedList.map((cur) => {
     return (
       <div key={cur.id} className="movie">
         <div className="image">

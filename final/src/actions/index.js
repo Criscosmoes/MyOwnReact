@@ -188,12 +188,6 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
       },
     });
 
-    //fetch watch provider
-    const providers = await moviesDB.get(`/movie/${id}/watch/providers`, {
-      params: {
-        api_key: '2d241abde6516d29ca9254c83e3cfc34', 
-      }
-    })
 
     if (trailers.data.results.length === 0) {
       //make youtube call also
@@ -213,7 +207,6 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
           trailersId: youtubeResponse.data.items[0].id.videoId, 
           currentMovie: movie, 
           cast: cast.data.cast, 
-          providers: providers.data.results, 
         }
       })
 
@@ -226,7 +219,6 @@ export const exampleTrailers = (id, movie) => async (dispatch) => {
         trailersId: trailers.data.results[0].key, 
         currentMovie: movie, 
         cast: cast.data.cast,
-        providers: providers.data.results
       }
     })
 

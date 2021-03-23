@@ -91,42 +91,14 @@ const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
     Aos.init({duration: 1500})
   }, [])
 
-
   const filteredList = movies.filter((cur) => cur.poster_path !== null);
-
-  const moviezList = filteredList.map((cur) => {
-    return (
-      <div key={cur.id} className="scene">
-        <div onClick={flipCard} className="card">
-          <div className="card__face card__face--front">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`}
-              alt={cur.title}
-            />
-            <div className="info">
-              <h3 className="title">{cur.title || cur.original_title || cur.name}</h3>
-              <h3>
-                Rating:{" "}
-                {`${cur.vote_average}  ${cur.vote_average > 7.5 ? "🔥" : ""}`}
-              </h3>
-              <Link to={`/movie/${cur.id}`}><button onClick={() => exampleTrailers(cur.id, cur)}>Watch Trailer</button></Link>
-            </div>
-          </div>
-          <div className="card__face card__face--back">
-            <p>{cur.overview}</p>
-          </div>
-        </div>
-      </div>
-    );
-  });
-
 
   const moviesList = filteredList.map((cur) => {
 
     return (
       <div className="movie" onClick={() => exampleTrailers(cur.id, cur)}>
         
-        <Link  to={`/movie/${cur.id}`}><img src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`} /></Link>
+        <Link  to={`/movie/${cur.id}`}><img src={`https://image.tmdb.org/t/p/w500/${cur.poster_path}`} alt={cur.title || cur.original_title || cur.name} /></Link>
         <h2>{cur.title || cur.original_title || cur.name}</h2>
       </div>
     )

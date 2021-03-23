@@ -24,7 +24,6 @@ const initialState = {
         trailersId: '', 
         currentMovie: {}, 
         cast: [], 
-        providers: {}, 
     },
 
 
@@ -139,7 +138,6 @@ export default (state = initialState, action) => {
                     trailersId: action.payload.trailersId, 
                     currentMovie: action.payload.currentMovie, 
                     cast: action.payload.cast, 
-                    providers: action.payload.providers, 
                 }, 
                 searchOpen: false, 
 
