@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 
 import { FaPlay } from "react-icons/fa";
 
+import { Link } from "react-scroll"; 
+
 const StyledWatchTrailerv2 = styled.div`
   & {
     display: flex;
@@ -71,12 +73,9 @@ const StyledWatchTrailerv2 = styled.div`
   .icon {
     border: none;
     outline: none;
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
-  .to-trailer {
-    width: 21%;
-  }
 
   .to-trailer:hover {
     cursor: pointer;
@@ -174,6 +173,11 @@ const StyledWatchTrailerv2 = styled.div`
     font-size: 5rem;
     color: orange;
   }
+
+  .to-trailer {
+    color: white;
+    font-size: 3rem; 
+  }
 `;
 
 const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
@@ -209,6 +213,8 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
       );
     });
   }
+
+  console.log(currentMovie); 
 
   return (
     <StyledWatchTrailerv2>
@@ -254,9 +260,10 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
               Date Released:{" "}
               {currentMovie.release_date || currentMovie.first_air_date}{" "}
             </h4>
-            <h4 className="to-trailer">
+            
+            <Link to="Trailer" smooth={true} className="to-trailer">
               <FaPlay className="icon" /> Check Trailer
-            </h4>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -276,7 +283,7 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
         ""
       )}
 
-      <motion.div
+      <motion.div id="Trailer" smooth={true}
         className="teaser-container"
         exit={{ opacity: 0 }}
         animate={{ opacity: 1 }}
