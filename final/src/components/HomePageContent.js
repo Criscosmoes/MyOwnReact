@@ -81,6 +81,18 @@ const StyledHomePageContent = styled.div`
     background-color: orange;
   }
 
+  @media (max-width: 800px){
+
+
+    h1 {
+      font-size: 4rem; 
+    }
+
+    .big-container > * {
+      margin: 4%
+    }
+
+  }
 
 `;
 

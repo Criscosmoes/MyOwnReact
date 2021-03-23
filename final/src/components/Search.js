@@ -100,6 +100,48 @@ const StyledSearch = styled.div`
     width: 80%
   }
 
+
+  @media (max-width: 800px){
+
+
+    .information {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      text-align: center; 
+    }
+
+    .information > * {
+      margin: 3%
+    }
+    
+    .image {
+      width: 60%; 
+    }
+
+    img {
+      border: none; 
+    }
+
+    h2 {
+      font-size: 4.5rem; 
+    }
+
+    p {
+      width: 100%; 
+      font-size: 1.8rem; 
+      letter-spacing: .1rem; 
+      line-height: 1.1; 
+    }
+
+    span {
+      font-size: 3.5rem; 
+    }
+
+
+  }
+
 `;
 
 const Search = ({ movies, exampleTrailers, isLoading }) => {

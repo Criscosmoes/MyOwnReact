@@ -178,6 +178,55 @@ const StyledWatchTrailerv2 = styled.div`
     color: white;
     font-size: 3rem; 
   }
+
+
+
+
+
+
+
+  @media (max-width: 800px){
+    h1 {
+      font-size: 3rem; 
+    }
+
+    p {
+      
+      font-size: 1.6rem;   
+    }
+
+    h4 {
+      font-size: 2.5rem; 
+    }
+
+    span {
+  
+      font-size: 2.5rem; 
+    }
+
+    .information {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 4rem; 
+    }
+
+
+    iframe {
+      width: 90%; 
+      height: 550px; 
+    }
+  }
+
+  @media (max-width: 500px){
+    
+  }
+
 `;
 
 const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
