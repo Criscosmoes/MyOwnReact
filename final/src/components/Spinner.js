@@ -25,6 +25,10 @@ const StyledSpinner = styled.div`
     border-radius: 50%;
   }
 
+
+
+  
+
   @media (max-width: 500px){
 
     .circle-container {

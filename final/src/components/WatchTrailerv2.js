@@ -224,7 +224,83 @@ const StyledWatchTrailerv2 = styled.div`
   }
 
   @media (max-width: 500px){
+
+    .trailer-container {
+      height: 580px;
+      background-size: cover;
+    }
+
+
+    .transparent {
+      display: flex; 
+      justify-content: space-evenly; 
+      align-items: center; 
+      flex-direction: column;
+      height: 580px;  
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .information {
+      display: flex; 
+      justify-content: space-evenly; 
+      align-items: center; 
+      flex-direction: column; 
+      text-align: center; 
+      width: 100%; 
+      height: 250px; 
+    }
+
+
+    .movie-image {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      margin: 1%; 
+      width: 60%; 
+      /* height: 200px;  */
+    }
+
+    .main-image {
+      height: 100%;
+      width: 80%; 
+    }
+
+    h1 {
+      font-size: 2.8rem; 
+    }
+
+    span {
+      font-size: 2.2rem; 
+    }
+
+    h4 {
+      font-size: 2rem; 
+    }
+
+    .to-trailer {
+      font-size: 2rem; 
+    }
+
+    .icon {
+      font-size: 1.6rem; 
+    }
     
+    p {
+      width: 100%; 
+      font-size: 1.7rem; 
+      letter-spacing: .1rem; 
+      line-height: 1.1;
+      overflow-y: auto;
+    }
+
+    h3 {
+      font-size: 3.5rem;     
+    }
+
+    iframe {
+      width: 95%; 
+      height: 400px; 
+    }
   }
 
 `;

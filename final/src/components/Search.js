@@ -20,9 +20,9 @@ const StyledSearch = styled.div`
     display: flex;
     justify-content: center; 
     align-items: center; 
-    margin: 1%
+    margin: 1%; 
+    border-bottom: 1px solid gray; 
   }
-
   .movie > * {
     margin: 1%
   }
@@ -246,7 +246,6 @@ const Search = ({ movies, exampleTrailers, isLoading }) => {
             <h4 className="rating"> Date Released: {cur.release_date || cur.first_air_date}</h4>
             
             <Link to={`/movie/${cur.id}`}><h3 onClick={() => exampleTrailers(cur.id, cur)} className="to-trailer"><FaPlay className="icon" /> Check Info</h3></Link>
-            <hr></hr>
         </div>
       </div>
     );
