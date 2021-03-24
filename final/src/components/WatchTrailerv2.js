@@ -298,6 +298,8 @@ const StyledWatchTrailerv2 = styled.div`
     }
 
     iframe {
+
+      border: 3px solid gray; 
       width: 95%; 
       height: 400px; 
     }
