@@ -117,7 +117,7 @@ const StyledSearch = styled.div`
     }
     
     .image {
-      width: 60%; 
+      width: 60%;
     }
 
     img {
@@ -138,6 +138,82 @@ const StyledSearch = styled.div`
     span {
       font-size: 3.5rem; 
     }
+
+
+  }
+
+  @media (max-width: 500px){
+
+
+    .image {
+      width: 90%
+    }
+
+
+
+    .information {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-direction: column; 
+      width: 100%; 
+      height: 310px; 
+    }
+
+    .information > * {
+      margin: 3.5%
+    }
+
+    img {
+      height: 300px
+    }
+
+
+    h2 {
+      font-size: 2rem; 
+    }
+
+    h4 {
+      font-size: 2rem; 
+    }
+
+    p {
+      width: 100%; 
+      font-size: 1.2rem; 
+      letter-spacing: .1rem; 
+      line-height: 1.1;
+      overflow-y: auto;
+      height: 200px; 
+    }
+
+
+    .movie-container {
+      height: 350px;
+    }
+
+    .movie {
+      height: 350px; 
+    }
+
+
+    span {
+      font-size: 2rem; 
+    }
+
+    .to-trailer {
+      font-size: 2rem; 
+    }
+
+    .rating {
+      display: none; 
+    }
+
+  }
+
+
+
+    
+
 
 
   }
@@ -166,8 +242,8 @@ const Search = ({ movies, exampleTrailers, isLoading }) => {
         <div className="information">
             <h2>{cur.title || cur.original_name}</h2>
             <p><span>Description</span> <br></br> <br></br>{cur.overview}</p>
-            <h4>Rating: {cur.vote_average}</h4>
-            <h4>Date Released: {cur.release_date || cur.first_air_date}</h4>
+            <h4 className="rating">Rating: {cur.vote_average}</h4>
+            <h4 className="rating"> Date Released: {cur.release_date || cur.first_air_date}</h4>
             
             <Link to={`/movie/${cur.id}`}><h3 onClick={() => exampleTrailers(cur.id, cur)} className="to-trailer"><FaPlay className="icon" /> Check Info</h3></Link>
             <hr></hr>

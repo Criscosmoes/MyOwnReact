@@ -24,6 +24,30 @@ const StyledSpinner = styled.div`
     background: white;
     border-radius: 50%;
   }
+
+  @media (max-width: 500px){
+
+    .circle-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 50%;
+    }
+
+    .loading-circle {
+      display: block;
+      width: 5rem;
+      height: 5rem;
+      background: white;
+      border-radius: 50%;
+    }
+
+
+
+  }
+
+
+
 `;
 
 const loadingContainerVariants = {

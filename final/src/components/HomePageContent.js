@@ -94,6 +94,15 @@ const StyledHomePageContent = styled.div`
 
   }
 
+  @media (max-width: 500px){
+
+    h1 {
+      font-size: 3rem; 
+    }
+
+
+  }
+
 `;
 
 const HomePageContent = ({ movies, title, flipCard, exampleTrailers }) => {
