@@ -215,7 +215,7 @@ const StyledNavBar = styled.div`
     .hide-sidebar {
       font-size: 3rem; 
       border: none; 
-      color: orange; 
+      color: #D3D3D3; 
     }
     
     .search {
