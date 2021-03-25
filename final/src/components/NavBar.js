@@ -53,8 +53,10 @@ const StyledNavBar = styled.div`
   .search {
     display: flex;
     justify-content: flex-end;
-    width: 17.5%
+    width: 20%;
   }
+
+  
 
   .icon {
     font-size: 4rem;
@@ -89,6 +91,7 @@ const StyledNavBar = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%
   }
 
   form > * {
@@ -110,6 +113,17 @@ const StyledNavBar = styled.div`
     color: gray; 
     border: none; 
     outline: none; 
+  }
+
+  .close {
+    font-size: 4.4rem; 
+    border: none; 
+    color: gray; 
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: orange; 
   }
 
 
@@ -170,6 +184,10 @@ const StyledNavBar = styled.div`
 
     }
 
+    .img:hover {
+      border: none; 
+    }
+
     .sidebar {
       margin-left: 3%; 
     }
@@ -183,7 +201,7 @@ const StyledNavBar = styled.div`
     .hide-sidebar {
       font-size: 3rem; 
       border: none; 
-      color: orange;
+      color: orange; 
     }
     
     .search {
@@ -191,8 +209,24 @@ const StyledNavBar = styled.div`
       margin-right: 3%
     }
 
+
     .close {
-      font-size: 3.2rem; 
+      font-size: 5rem; 
+    }
+
+    .title {
+      width: 40%; 
+      position: absolute; 
+      right: 100px; 
+      top: 18px; 
+    }
+
+    .hide {
+      display: none; 
+    }
+
+    .icon {
+      font-size: 3.5rem; 
     }
 
 
@@ -225,6 +259,7 @@ const NavBar = ({
 }) => {
   const [isOpen, setisOpen] = useState(true);
   const [isWidth, setisWidth] = useState(false);
+  const [openInput, setOpenInput] = useState(false); 
 
   const removeDivs = () => {
 
@@ -236,6 +271,14 @@ const NavBar = ({
     else {
       setisWidth(false); 
     }
+
+  }
+
+  const changeBooleans = () => {
+
+
+    setisOpen(!isOpen); 
+    setOpenInput(!openInput); 
 
   }
 
@@ -259,7 +302,7 @@ const NavBar = ({
         </div>
       }
 
-      <div className="title secret"><Link to="/"><h2><span>M</span>ovies Info</h2></Link></div>
+      <div className={`title ${openInput ? "hide" : ""}`}><Link to="/"><h2><span>M</span>ovies Info</h2></Link></div>
   
       {window.innerWidth < 500 ? "" : 
       
@@ -273,25 +316,22 @@ const NavBar = ({
 
       <div className="search">
         {isOpen ? (
-          <BiSearchAlt className="icon" onClick={() => setisOpen(!isOpen)} />
+          <BiSearchAlt className="icon" onClick={changeBooleans} />
         ) : (
-          <div className="hidden">
-            <form>
-              <input
-              name="navSearchTerm"
-              onChange={onInputChange}
-              value={term}
-              type="text"
-              placeholder="Search movies..."
-              />
-            <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
-            <AiOutlineClose
-              className="close"
-              onClick={() => setisOpen(!isOpen)}
-            />{" "}
-            </form>
-           
-          </div>
+          <form>
+            <input
+            name="navSearchTerm"
+            onChange={onInputChange}
+            value={term}
+            type="text"
+            placeholder="Search movies..."
+            />
+          <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
+          <AiOutlineClose
+            className="close"
+            onClick={changeBooleans}
+          />{" "}
+          </form>
         )}
       </div>
     </StyledNavBar>
