@@ -170,7 +170,7 @@ const StyledSearch = styled.div`
 
 
     h2 {
-      font-size: 2rem; 
+      font-size: 2.3rem; 
     }
 
     h4 {
@@ -179,7 +179,7 @@ const StyledSearch = styled.div`
 
     p {
       width: 100%; 
-      font-size: 1.2rem; 
+      font-size: 1.5rem; 
       letter-spacing: .1rem; 
       line-height: 1.1;
       overflow-y: auto;

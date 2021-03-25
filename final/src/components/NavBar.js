@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaBars } from 'react-icons/fa'; 
+import { AiFillFire } from 'react-icons/ai'; 
+import { FaArrowAltCircleUp } from "react-icons/fa"; 
+import { BsQuestionSquareFill } from "react-icons/bs"; 
+import { ImCross } from "react-icons/im"; 
 
 
 
@@ -19,13 +23,23 @@ import { Link } from "react-router-dom";
 
 
 const StyledNavBar = styled.div`
-  & {
+  /* & {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 65px;
     color: lightgray;
     border-bottom: .5px solid gray; 
+  } */
+
+  .big-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    color: lightgray;
+    border-bottom: .5px solid gray; 
+    width: 100%
   }
 
   h2 {
@@ -131,7 +145,7 @@ const StyledNavBar = styled.div`
 
     & {
       display: flex; 
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center; 
     }
 
@@ -217,8 +231,8 @@ const StyledNavBar = styled.div`
     .title {
       width: 40%; 
       position: absolute; 
-      right: 100px; 
-      top: 18px; 
+      right: 104px; 
+      top: 17px; 
     }
 
     .hide {
@@ -229,6 +243,42 @@ const StyledNavBar = styled.div`
       font-size: 3.5rem; 
     }
 
+    .nav-links {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      z-index: 2;
+      height: 100vh; 
+      width: 250px; 
+      background: gray; 
+      transform: translateX(-250px);
+      transition: transform 0.3s; 
+      background: #181818; 
+      border: 2px solid gray; 
+    }
+
+    .open {
+      transform: translateX(0); 
+      transition: 500ms ease-in; 
+    }
+
+    .all-links {
+      display: flex; 
+      margin: 4%; 
+      align-items: center; 
+      font-size: 2.2rem; 
+      padding: 12px 15px; 
+      color: white; 
+    }
+
+    .all-links > * {
+      margin-right: 15px; 
+    }
+
+    .nav-icons {
+      font-size: 2.2rem; 
+      border: none; 
+    }
 
 
   }
@@ -260,6 +310,7 @@ const NavBar = ({
   const [isOpen, setisOpen] = useState(true);
   const [isWidth, setisWidth] = useState(false);
   const [openInput, setOpenInput] = useState(false); 
+  const [navOpen, setNavOpen] = useState(false); 
 
   const removeDivs = () => {
 
@@ -295,44 +346,55 @@ const NavBar = ({
   return (
     <StyledNavBar>
 
-      
-      {window.innerWidth > 500 ? "" : 
-        <div className="sidebar">
-          <FaBars className="hide-sidebar"/>
+      <div className="big-container">
+        {window.innerWidth > 500 ? "" : 
+          <div className="sidebar">
+            <FaBars className="hide-sidebar" onClick={() => setNavOpen(true)}/>
+          </div>
+        }
+
+
+        <div className={`title ${openInput ? "hide" : ""}`}><Link to="/"><h2><span>M</span>ovies Info</h2></Link></div>
+    
+        {window.innerWidth < 500 ? "" : 
+        
+        <div className="links">
+          <Link className="all-links" onClick={switchOpen} to="/popular">Popular</Link>
+          <Link className="all-links" onClick={switchOpen} to="/now_playing">Now Playing</Link>
+          <Link className="all-links" onClick={switchOpen} to="/upcoming"> Upcoming</Link>
         </div>
-      }
+        
+        }
 
-      <div className={`title ${openInput ? "hide" : ""}`}><Link to="/"><h2><span>M</span>ovies Info</h2></Link></div>
-  
-      {window.innerWidth < 500 ? "" : 
-      
-      <div className="links">
-        <Link className="all-links" onClick={switchOpen} to="/popular">Popular</Link>
-        <Link className="all-links" onClick={switchOpen} to="/now_playing">Now Playing</Link>
-        <Link className="all-links" onClick={switchOpen} to="/upcoming"> Upcoming</Link>
-      </div>
-      
-      }
-
-      <div className="search">
-        {isOpen ? (
-          <BiSearchAlt className="icon" onClick={changeBooleans} />
-        ) : (
-          <form>
-            <input
-            name="navSearchTerm"
-            onChange={onInputChange}
-            value={term}
-            type="text"
-            placeholder="Search movies..."
-            />
-          <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
-          <AiOutlineClose
-            className="close"
-            onClick={changeBooleans}
-          />{" "}
-          </form>
-        )}
+        <div className="search">
+          {isOpen ? (
+            <BiSearchAlt className="icon" onClick={changeBooleans} />
+          ) : (
+            <form>
+              <input
+              name="navSearchTerm"
+              onChange={onInputChange}
+              value={term}
+              type="text"
+              placeholder="Search movies..."
+              />
+            <Link to={`/search/${term}`}><button onClick={() => fetchMovies('search', 'search/movie', term)} type="submit"><BiSearchAlt className="icon" /></button></Link>
+            <AiOutlineClose
+              className="close"
+              onClick={changeBooleans}
+            />{" "}
+            </form>
+          )}
+        </div>
+        {window.innerWidth < 500 ? <nav>
+          <div className={`nav-links ${navOpen ? "open" : ""}`}>
+            <Link className="all-links" onClick={() => setNavOpen(false)} to="/popular"> <AiFillFire className="nav-icons" />Popular</Link>
+            <Link className="all-links" onClick={() => setNavOpen(false)} to="/now_playing"><FaArrowAltCircleUp className="nav-icons" />Now Playing</Link>
+            <Link className="all-links" onClick={() => setNavOpen(false)} to="/upcoming"><BsQuestionSquareFill className="nav-icons" />Upcoming</Link>
+            <div className="all-links" onClick={() => setNavOpen(false)}><ImCross className="nav-icons"/>Back</div>
+          </div>
+        </nav> : ""}
+        
       </div>
     </StyledNavBar>
   );

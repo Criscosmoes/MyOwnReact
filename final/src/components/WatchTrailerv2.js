@@ -191,8 +191,12 @@ const StyledWatchTrailerv2 = styled.div`
     }
 
     p {
-      
-      font-size: 1.6rem;   
+      width: 100%; 
+      font-size: 1.7rem; 
+      letter-spacing: .1rem; 
+      line-height: 1.1;
+      overflow-y: auto; 
+      min-height: 100px;   
     }
 
     h4 {
@@ -226,7 +230,7 @@ const StyledWatchTrailerv2 = styled.div`
   @media (max-width: 500px){
 
     .trailer-container {
-      height: 580px;
+      height: 650px;
       background-size: cover;
     }
 
@@ -236,7 +240,7 @@ const StyledWatchTrailerv2 = styled.div`
       justify-content: space-evenly; 
       align-items: center; 
       flex-direction: column;
-      height: 580px;  
+      height: 650px;  
       background: rgba(0, 0, 0, 0.7);
     }
 
@@ -247,7 +251,7 @@ const StyledWatchTrailerv2 = styled.div`
       flex-direction: column; 
       text-align: center; 
       width: 100%; 
-      height: 250px; 
+      height: 300px; 
     }
 
 
@@ -290,7 +294,8 @@ const StyledWatchTrailerv2 = styled.div`
       font-size: 1.7rem; 
       letter-spacing: .1rem; 
       line-height: 1.1;
-      overflow-y: auto;
+      overflow-y: auto; 
+      min-height: 100px;
     }
 
     h3 {
@@ -302,6 +307,18 @@ const StyledWatchTrailerv2 = styled.div`
       border: 3px solid gray; 
       width: 95%; 
       height: 400px; 
+    }
+
+    .cast-information > * {
+      margin: 4%
+    }
+
+    .teaser-container > * {
+      margin: 4%
+    }
+
+    .teaser-container {
+      height: 600px; 
     }
   }
 
@@ -365,9 +382,9 @@ const WatchTrailerv2 = ({ trailerId, currentMovie, cast, providers }) => {
                 ? `(${currentMovie.media_type.toUpperCase()})`
                 : ""}
             </h1>
+            <span>Description</span>
             <p>
-              <span>Description</span>
-              <br></br> {currentMovie.overview}
+             {currentMovie.overview}
             </p>
             <h4>
               Rating:{" "}
