@@ -249,12 +249,12 @@ const StyledNavBar = styled.div`
       left: 0; 
       z-index: 2;
       height: 100vh; 
-      width: 250px; 
+      width: 320px; 
       background: gray; 
-      transform: translateX(-250px);
+      transform: translateX(-320px);
       transition: transform 0.3s; 
       background: #181818; 
-      border: 2px solid gray; 
+      border-right: 3px solid gray; 
     }
 
     .open {
